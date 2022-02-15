@@ -13,7 +13,8 @@ public class mainScreen extends JFrame implements ActionListener {
     // Declare Buttons
     JButton btnExit, btnQuestionNo, btnTopic, btnSubtopic
             , btnClear, btnSort, btnConnect
-            ,btnPreorder,btnPostorder,btnInorder;
+            ,btnPreorder,btnPostorder,btnInorder
+            ,btnDisplay,btnSave;
     // Declare Lables
     JLabel lblPolicyTitle, txtSearch,txtSort
             ,txtLinkedList,txtBinary,txtTitle
@@ -34,10 +35,11 @@ public class mainScreen extends JFrame implements ActionListener {
     public mainScreen()
     {
         //initialise main screen
-        setSize(1000, 700);
+        setSize(800, 700);
         setLocation(0, 0);
         AddWindowListenerToForm();
         setLayout(myLayout);
+        setResizable(false);
 
 
         setTitle("Perfect Policys Quiz | Version: 1.0 |");
@@ -64,14 +66,14 @@ public class mainScreen extends JFrame implements ActionListener {
        // ArrayList<Object[]> al = new ArrayList();
 
 
-        al.add(new Object[] {"Yes","No","-"});
-        al.add(new Object[] {"Hi","there","-"});
-        al.add(new Object[] {"True","False","-"});
-        al.add(new Object[] {"Cat","Dog","-"});
-        al.add(new Object[] {"Cat","Dog","-"});
-        al.add(new Object[] {"Cat","Dog","-"});
-        al.add(new Object[] {"Cat","Dog","-"});
-        al.add(new Object[] {"Cat","Dog","-"});
+        al.add(new Object[] {"1","Test","-"});
+        al.add(new Object[] {"2","Test","-"});
+        al.add(new Object[] {"3","Test","-"});
+        al.add(new Object[] {"4","Test","-"});
+        al.add(new Object[] {"5","Test","-"});
+        al.add(new Object[] {"6","Test","-"});
+        al.add(new Object[] {"7","Test","-"});
+        al.add(new Object[] {"8","Test","-"});
 
         // constructor of JTable model
         quizModel = new MyModel(al, columnNames);
@@ -201,9 +203,11 @@ public class mainScreen extends JFrame implements ActionListener {
         btnTopic = UIComponentLibrary.CreateJButton("Topic", 80, 20, 70, 310, this, this, myLayout);
         btnExit = UIComponentLibrary.CreateJButton("Exit",100,20,100,340,this, this, myLayout);
         btnConnect = UIComponentLibrary.CreateJButton("Connect",100,20,200,340,this, this, myLayout);
-        btnInorder = UIComponentLibrary.CreateJButton("Display",100,20,200,340,this, this, myLayout);
-        btnPreorder = UIComponentLibrary.CreateJButton("Display",100,20,200,340,this, this, myLayout);
-        btnPostorder = UIComponentLibrary.CreateJButton("Display",100,20,200,340,this, this, myLayout);
+        btnInorder = UIComponentLibrary.CreateJButton("Display",100,20,10,600,this, this, myLayout);
+        btnPreorder = UIComponentLibrary.CreateJButton("Display",100,20,210,600,this, this, myLayout);
+        btnPostorder = UIComponentLibrary.CreateJButton("Display",100,20,410,600,this, this, myLayout);
+        btnDisplay = UIComponentLibrary.CreateJButton("Display",100,20,675,580,this, this, myLayout);
+        btnSave = UIComponentLibrary.CreateJButton("Save",100,20,675,620,this, this, myLayout);
 
 
 
@@ -211,16 +215,38 @@ public class mainScreen extends JFrame implements ActionListener {
     // Setup Lables
     private void SetupJlabels()
     {
-        lblPolicyTitle = UIComponentLibrary.CreateAJLabel("Policy Questions", 160, 125, this, myLayout);
+        lblPolicyTitle = UIComponentLibrary.CreateAJLabel("                                                    Policy Questions                                                       ", 0, 125, this, myLayout);
+        lblPolicyTitle.setOpaque(true);
+        lblPolicyTitle.setBackground(Color.cyan);
+
         txtSearch = UIComponentLibrary.CreateAJLabel("Search:", 10,75,this, myLayout);
         txtSort = UIComponentLibrary.CreateAJLabel("Sort By:", 10,310,this, myLayout);
-        txtLinkedList = UIComponentLibrary.CreateAJLabel("Linked List:", 10,370,this, myLayout);
-        txtBinary = UIComponentLibrary.CreateAJLabel("Binary Tree:", 10,470,this, myLayout);
-        txtTitle = UIComponentLibrary.CreateAJLabel("Perfect Policy",435,10,this,myLayout);
+
+        txtLinkedList = UIComponentLibrary.CreateAJLabel("Linked List:                                                                                                                                                                                                                                            ", 10,370,this, myLayout);
+        txtLinkedList.setOpaque(true);
+        txtLinkedList.setBackground(Color.cyan);
+
+        txtBinary = UIComponentLibrary.CreateAJLabel("Binary Tree:                                                                                                                                                                                                                                           ", 10,470,this, myLayout);
+        txtBinary.setOpaque(true);
+        txtBinary.setBackground(Color.cyan);
+
+        txtTitle = UIComponentLibrary.CreateAJLabel("                                                                  Perfect Policy                                                                                           ",0,10,this,myLayout);
         txtTitle.setFont(new Font("Serif", Font.PLAIN, 20));
-        txtInorder = UIComponentLibrary.CreateAJLabel("In Order", 10,370,this, myLayout);
-        txtPreorder = UIComponentLibrary.CreateAJLabel("Pre Order", 10,370,this, myLayout);
-        txtPostorder = UIComponentLibrary.CreateAJLabel("Post Order", 10,370,this, myLayout);
+        txtTitle.setOpaque(true);
+        txtTitle.setBackground(Color.cyan);
+
+        txtInorder = UIComponentLibrary.CreateAJLabel("In Order", 35,580,this, myLayout);
+        txtInorder.setOpaque(true);
+        txtInorder.setBackground(Color.cyan);
+
+        txtPreorder = UIComponentLibrary.CreateAJLabel("Pre Order", 232,580,this, myLayout);
+        txtPreorder.setOpaque(true);
+        txtPreorder.setBackground(Color.cyan);
+
+        txtPostorder = UIComponentLibrary.CreateAJLabel("Post Order", 430,580,this, myLayout);
+        txtPostorder.setOpaque(true);
+        txtPostorder.setBackground(Color.cyan);
+
 
     }
 
@@ -230,11 +256,11 @@ public class mainScreen extends JFrame implements ActionListener {
         searchBox = UIComponentLibrary.CreateAJTextField(20,60,75,this,myLayout);
 
         // Linked List
-        LinkedList = UIComponentLibrary.CreateAJTextArea(5,60,10,390,this, myLayout);
+        LinkedList = UIComponentLibrary.CreateAJTextArea(5,70,10,390,this, myLayout);
         LinkedList.setBorder(BorderFactory.createLineBorder(Color.black));
 
         // Binary Search
-        BinarySearchtxt = UIComponentLibrary.CreateAJTextArea(5,60,10,490,this, myLayout);
+        BinarySearchtxt = UIComponentLibrary.CreateAJTextArea(5,70,10,490,this, myLayout);
         BinarySearchtxt.setBorder(BorderFactory.createLineBorder(Color.black));
 
     }
