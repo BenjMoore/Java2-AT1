@@ -6,11 +6,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
-public class mainScreen extends JFrame implements ActionListener {
+
+public class mainScreen extends JFrame implements ActionListener, MouseListener {
+
     // declare buttons and layout
     SpringLayout myLayout = new SpringLayout();
-    
+
     // Declare Buttons
     JButton btnExit, btnQuestionNo, btnTopic, btnSubtopic
             , btnSend, btnSort, btnConnect
@@ -36,6 +40,7 @@ public class mainScreen extends JFrame implements ActionListener {
     ArrayList<Object[]> al = new ArrayList();
     MyModel quizModel;
     JTable table;
+    int rowIndex = 0;
 
     // Initialise Main Screen
     public mainScreen()
@@ -110,6 +115,8 @@ public class mainScreen extends JFrame implements ActionListener {
         myLayout.putConstraint(SpringLayout.NORTH, topPanel, 150, SpringLayout.NORTH, this);
 
     }
+
+
     // Create Jtable Model
     class MyModel extends AbstractTableModel
     {
@@ -298,6 +305,18 @@ public class mainScreen extends JFrame implements ActionListener {
         txtOne = UIComponentLibrary.CreateAJTextField(5,550,325,this,myLayout);
     }
 
+    // Setup Functionality
+
+    public void displayQuestionNumber(int index){questionBox.setText(al.get(index)[0].toString());}
+    
+    private void DisplayText()
+    {
+       rowIndex = table.getSelectedRow();
+       displayQuestionNumber(rowIndex);
+    }
+
+    // End Functionality
+
     // action listner add
     private void AddWindowListenerToForm()
     {
@@ -310,6 +329,31 @@ public class mainScreen extends JFrame implements ActionListener {
         });
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e)
+    {
+    DisplayText();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
     // Action Listener
     @Override
     public void actionPerformed(ActionEvent actionEvent) // action listner class
@@ -318,7 +362,6 @@ public class mainScreen extends JFrame implements ActionListener {
         {
             System.exit(0); // exit
         }
-
 
     }
 
