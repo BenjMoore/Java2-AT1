@@ -10,18 +10,25 @@ import java.util.ArrayList;
 public class mainScreen extends JFrame implements ActionListener {
     // declare buttons and layout
     SpringLayout myLayout = new SpringLayout();
+    
     // Declare Buttons
     JButton btnExit, btnQuestionNo, btnTopic, btnSubtopic
-            , btnClear, btnSort, btnConnect
+            , btnSend, btnSort, btnConnect
             ,btnPreorder,btnPostorder,btnInorder
             ,btnDisplay,btnSave;
-    // Declare Lables
+
+    // Declare Labels
     JLabel lblPolicyTitle, txtSearch,txtSort
             ,txtLinkedList,txtBinary,txtTitle
-            ,txtPreorder,txtPostorder,txtInorder;
+            ,txtPreorder,txtPostorder,txtInorder
+            ,txtTopic,txtA,txtQN
+            ,txtQnA,txtQnB,txtQnC
+            ,txtQnD,txtQnE,txtCorrectAns;
 
     // Declare Text Fields
-    JTextField searchBox, txtClass, txtRoom, txtDate;
+    JTextField searchBox, topicBox, questionBox,
+            answerBox,aBox,bBox,
+            cBox,dBox,eBox, txtOne;
 
     // Declare Text Area
     JTextArea LinkedList, BinarySearchtxt;
@@ -29,9 +36,8 @@ public class mainScreen extends JFrame implements ActionListener {
     ArrayList<Object[]> al = new ArrayList();
     MyModel quizModel;
     JTable table;
-    String Version = "V0.1";
 
-
+    // Initialise Main Screen
     public mainScreen()
     {
         //initialise main screen
@@ -52,6 +58,10 @@ public class mainScreen extends JFrame implements ActionListener {
         System.out.println("Initial size of al: " + al.size());
 
     }
+
+    // JTable
+
+    // Setup JTable
     public void setupTable()
     {
         JPanel topPanel = new JPanel();
@@ -100,26 +110,6 @@ public class mainScreen extends JFrame implements ActionListener {
         myLayout.putConstraint(SpringLayout.NORTH, topPanel, 150, SpringLayout.NORTH, this);
 
     }
-
-    // Bubble Sort
-    public static void bubbleSort(ArrayList<Object[]> arr)
-    {
-
-        for(int j=0; j<arr.size(); j++)
-        {
-            for(int i=j+1; i<arr.size(); i++)
-            {
-                if((arr.get(i)[0]).toString().compareToIgnoreCase(arr.get(j)[0].toString())<0)
-                {
-                    Object[] words = arr.get(j);
-                    arr.set(j, arr.get(i));
-                    arr.set(i, words);
-                }
-            }
-            System.out.println(arr.get(j)[0] + " - " + arr.get(j)[1]);
-        }
-    }
-
     // Create Jtable Model
     class MyModel extends AbstractTableModel
     {
@@ -191,9 +181,26 @@ public class mainScreen extends JFrame implements ActionListener {
         }
     }
 
+    // Sort Algorithms
 
+    // Bubble Sort
+    public static void bubbleSort(ArrayList<Object[]> arr)
+    {
 
-
+        for(int j=0; j<arr.size(); j++)
+        {
+            for(int i=j+1; i<arr.size(); i++)
+            {
+                if((arr.get(i)[0]).toString().compareToIgnoreCase(arr.get(j)[0].toString())<0)
+                {
+                    Object[] words = arr.get(j);
+                    arr.set(j, arr.get(i));
+                    arr.set(i, words);
+                }
+            }
+            System.out.println(arr.get(j)[0] + " - " + arr.get(j)[1]);
+        }
+    }
     // Setup Buttons
     private void SetupButtons()
     {
@@ -208,7 +215,7 @@ public class mainScreen extends JFrame implements ActionListener {
         btnPostorder = UIComponentLibrary.CreateJButton("Display",100,20,410,600,this, this, myLayout);
         btnDisplay = UIComponentLibrary.CreateJButton("Display",100,20,675,580,this, this, myLayout);
         btnSave = UIComponentLibrary.CreateJButton("Save",100,20,675,620,this, this, myLayout);
-
+        btnSend = UIComponentLibrary.CreateJButton("Send",100,20,620,325,this,this,myLayout);
 
 
     }
@@ -235,6 +242,8 @@ public class mainScreen extends JFrame implements ActionListener {
         txtTitle.setOpaque(true);
         txtTitle.setBackground(Color.cyan);
 
+        // Sort Buttons
+
         txtInorder = UIComponentLibrary.CreateAJLabel("In Order", 35,580,this, myLayout);
         txtInorder.setOpaque(true);
         txtInorder.setBackground(Color.cyan);
@@ -246,6 +255,19 @@ public class mainScreen extends JFrame implements ActionListener {
         txtPostorder = UIComponentLibrary.CreateAJLabel("Post Order", 430,580,this, myLayout);
         txtPostorder.setOpaque(true);
         txtPostorder.setBackground(Color.cyan);
+
+        // Question Viewer
+        txtTopic = UIComponentLibrary.CreateAJLabel("Topic:", 500,60,this, myLayout);
+        txtQN = UIComponentLibrary.CreateAJLabel("Q# :", 500,90,this, myLayout);
+        txtA = UIComponentLibrary.CreateAJLabel("Answer:", 500,120,this, myLayout);
+        txtQnA = UIComponentLibrary.CreateAJLabel("A:", 500,150,this, myLayout);
+        txtQnB = UIComponentLibrary.CreateAJLabel("B:", 500,180,this, myLayout);
+        txtQnC = UIComponentLibrary.CreateAJLabel("C:", 500,210,this, myLayout);
+        txtQnD = UIComponentLibrary.CreateAJLabel("D:", 500,240,this, myLayout);
+        txtQnE = UIComponentLibrary.CreateAJLabel("E:", 500,270,this, myLayout);
+
+        // Answers
+        txtCorrectAns = UIComponentLibrary.CreateAJLabel("Correct Answer",450,325,this,myLayout);
 
 
     }
@@ -263,10 +285,21 @@ public class mainScreen extends JFrame implements ActionListener {
         BinarySearchtxt = UIComponentLibrary.CreateAJTextArea(5,70,10,490,this, myLayout);
         BinarySearchtxt.setBorder(BorderFactory.createLineBorder(Color.black));
 
+        // Question Fields
+        topicBox = UIComponentLibrary.CreateAJTextField(20,550,60,this,myLayout);
+        questionBox = UIComponentLibrary.CreateAJTextField(20,550,90,this,myLayout);
+        answerBox = UIComponentLibrary.CreateAJTextField(20,550,120,this,myLayout);
+        aBox = UIComponentLibrary.CreateAJTextField(20,550,150,this,myLayout);
+        bBox = UIComponentLibrary.CreateAJTextField(20,550,180,this,myLayout);
+        cBox = UIComponentLibrary.CreateAJTextField(20,550,210,this,myLayout);
+        dBox = UIComponentLibrary.CreateAJTextField(20,550,240,this,myLayout);
+        eBox = UIComponentLibrary.CreateAJTextField(20,550,270,this,myLayout);
+
+        txtOne = UIComponentLibrary.CreateAJTextField(5,550,325,this,myLayout);
     }
 
-
-    private void AddWindowListenerToForm() // action listner add
+    // action listner add
+    private void AddWindowListenerToForm()
     {
         addWindowListener(new WindowAdapter() {
             @Override
@@ -277,7 +310,6 @@ public class mainScreen extends JFrame implements ActionListener {
         });
     }
 
-
     // Action Listener
     @Override
     public void actionPerformed(ActionEvent actionEvent) // action listner class
@@ -287,14 +319,11 @@ public class mainScreen extends JFrame implements ActionListener {
             System.exit(0); // exit
         }
 
+
     }
-
-
 
 }
 
-// loop though text fields
-// if
 
 
 
