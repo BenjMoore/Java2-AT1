@@ -69,7 +69,7 @@ public class mainScreen extends JFrame implements ActionListener {
         // Add the table to a scrolling pane, size and locate
         JScrollPane scrollPane = table.createScrollPaneForTable(table);
         topPanel.add(scrollPane, BorderLayout.CENTER);
-        topPanel.setPreferredSize(new Dimension(400, 300));
+        topPanel.setPreferredSize(new Dimension(400, 120));
         myLayout.putConstraint(SpringLayout.WEST, topPanel, 170, SpringLayout.WEST, this);
         myLayout.putConstraint(SpringLayout.NORTH, topPanel, 40, SpringLayout.NORTH, this);
 
@@ -157,7 +157,8 @@ public class mainScreen extends JFrame implements ActionListener {
 
 
 
-    private void SetupButtons() {
+    private void SetupButtons()
+    {
         // set up all buttons
         btnExit = UIComponentLibrary.CreateJButton("Exit", 80, 25, 250, 350, this, this, myLayout);
         btnOpen = UIComponentLibrary.CreateJButton("Open", 80, 25, 150, 350, this, this, myLayout);
@@ -170,7 +171,8 @@ public class mainScreen extends JFrame implements ActionListener {
 
     }
 
-    private void SetupTextfields() {
+    private void SetupTextfields()
+    {
         // set up all text fields
         txtSearch = UIComponentLibrary.CreateAJTextField(10, 150, 405, this, myLayout);
         txtTeacher = UIComponentLibrary.CreateAJTextField(10, 50, 10, this, myLayout);
@@ -192,8 +194,6 @@ public class mainScreen extends JFrame implements ActionListener {
 
         //Iterates through 2D textfield array to generate and build individual textfields
         //Y values indicate Y-Axis of array values X indicate X-Axis eg.array[y][x]
-
-
 
     }
 
