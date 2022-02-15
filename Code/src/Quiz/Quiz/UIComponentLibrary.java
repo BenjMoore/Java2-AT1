@@ -16,7 +16,15 @@ public class UIComponentLibrary
         frame.add(myButton); //Adds button to frame
         return myButton; //Returns completed button to caller.
     }
+    public static JTextArea CreateAJTextArea(int rows, int columns, int posX, int posY, Frame frame, SpringLayout layout) {
+        JTextArea myTextArea = new JTextArea(rows, columns);
+        layout.putConstraint(SpringLayout.WEST, myTextArea, posX, SpringLayout.WEST, frame);//Sets text field's X Coordinates
+        layout.putConstraint(SpringLayout.NORTH, myTextArea, posY, SpringLayout.NORTH, frame);//Sets text field's Y Coordinates
 
+        frame.add(myTextArea);
+
+        return myTextArea;
+    }
     public static JTextField CreateAJTextField(int size, int posX, int posY, Frame frame, SpringLayout layout)
     {
         JTextField myTextField = new JTextField(size); //Creates JTextField and sets size

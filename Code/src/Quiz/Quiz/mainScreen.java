@@ -10,9 +10,21 @@ import java.util.ArrayList;
 public class mainScreen extends JFrame implements ActionListener {
     // declare buttons and layout
     SpringLayout myLayout = new SpringLayout();
-    JButton btnExit, btnQuestionNo, btnTopic, btnSubtopic, btnClear, btnSort, btnConnect;
-    JLabel lblPolicyTitle, txtSearch,txtSort;
+    // Declare Buttons
+    JButton btnExit, btnQuestionNo, btnTopic, btnSubtopic
+            , btnClear, btnSort, btnConnect
+            ,btnPreorder,btnPostorder,btnInorder;
+    // Declare Lables
+    JLabel lblPolicyTitle, txtSearch,txtSort
+            ,txtLinkedList,txtBinary,txtTitle
+            ,txtPreorder,txtPostorder,txtInorder;
+
+    // Declare Text Fields
     JTextField searchBox, txtClass, txtRoom, txtDate;
+
+    // Declare Text Area
+    JTextArea LinkedList, BinarySearchtxt;
+
     ArrayList<Object[]> al = new ArrayList();
     MyModel quizModel;
     JTable table;
@@ -27,7 +39,8 @@ public class mainScreen extends JFrame implements ActionListener {
         AddWindowListenerToForm();
         setLayout(myLayout);
 
-        setTitle("Perfect Policys Quiz | Version: |");
+
+        setTitle("Perfect Policys Quiz | Version: 1.0 |");
         // Setup UI
         SetupButtons();
         SetupTextfields();
@@ -35,6 +48,7 @@ public class mainScreen extends JFrame implements ActionListener {
         SetupJlabels();
         setVisible(true);
         System.out.println("Initial size of al: " + al.size());
+
     }
     public void setupTable()
     {
@@ -79,7 +93,7 @@ public class mainScreen extends JFrame implements ActionListener {
         // Add the table to a scrolling pane, size and locate
         JScrollPane scrollPane = table.createScrollPaneForTable(table);
         topPanel.add(scrollPane, BorderLayout.CENTER);
-        topPanel.setPreferredSize(new Dimension(400, 120));
+        topPanel.setPreferredSize(new Dimension(400, 150));
         myLayout.putConstraint(SpringLayout.WEST, topPanel, 10, SpringLayout.WEST, this);
         myLayout.putConstraint(SpringLayout.NORTH, topPanel, 150, SpringLayout.NORTH, this);
 
@@ -182,11 +196,15 @@ public class mainScreen extends JFrame implements ActionListener {
     private void SetupButtons()
     {
         // set up all buttons
-        btnQuestionNo = UIComponentLibrary.CreateJButton("Q #", 80, 20, 280, 275, this, this, myLayout);
-        btnSubtopic = UIComponentLibrary.CreateJButton("Subtopic", 90, 20, 170, 275, this, this, myLayout);
-        btnTopic = UIComponentLibrary.CreateJButton("Topic", 80, 20, 70, 275, this, this, myLayout);
-        btnExit = UIComponentLibrary.CreateJButton("Exit",100,20,100,305,this, this, myLayout);
-        btnConnect = UIComponentLibrary.CreateJButton("Connect",100,20,200,305,this, this, myLayout);
+        btnQuestionNo = UIComponentLibrary.CreateJButton("Q #", 80, 20, 280, 310, this, this, myLayout);
+        btnSubtopic = UIComponentLibrary.CreateJButton("Subtopic", 90, 20, 170, 310, this, this, myLayout);
+        btnTopic = UIComponentLibrary.CreateJButton("Topic", 80, 20, 70, 310, this, this, myLayout);
+        btnExit = UIComponentLibrary.CreateJButton("Exit",100,20,100,340,this, this, myLayout);
+        btnConnect = UIComponentLibrary.CreateJButton("Connect",100,20,200,340,this, this, myLayout);
+        btnInorder = UIComponentLibrary.CreateJButton("Display",100,20,200,340,this, this, myLayout);
+        btnPreorder = UIComponentLibrary.CreateJButton("Display",100,20,200,340,this, this, myLayout);
+        btnPostorder = UIComponentLibrary.CreateJButton("Display",100,20,200,340,this, this, myLayout);
+
 
 
     }
@@ -194,19 +212,33 @@ public class mainScreen extends JFrame implements ActionListener {
     private void SetupJlabels()
     {
         lblPolicyTitle = UIComponentLibrary.CreateAJLabel("Policy Questions", 160, 125, this, myLayout);
-        txtSearch = UIComponentLibrary.CreateAJLabel("Search:", 10,50,this, myLayout);
-        txtSort = UIComponentLibrary.CreateAJLabel("Sort By:", 10,275,this, myLayout);
+        txtSearch = UIComponentLibrary.CreateAJLabel("Search:", 10,75,this, myLayout);
+        txtSort = UIComponentLibrary.CreateAJLabel("Sort By:", 10,310,this, myLayout);
+        txtLinkedList = UIComponentLibrary.CreateAJLabel("Linked List:", 10,370,this, myLayout);
+        txtBinary = UIComponentLibrary.CreateAJLabel("Binary Tree:", 10,470,this, myLayout);
+        txtTitle = UIComponentLibrary.CreateAJLabel("Perfect Policy",435,10,this,myLayout);
+        txtTitle.setFont(new Font("Serif", Font.PLAIN, 20));
+        txtInorder = UIComponentLibrary.CreateAJLabel("In Order", 10,370,this, myLayout);
+        txtPreorder = UIComponentLibrary.CreateAJLabel("Pre Order", 10,370,this, myLayout);
+        txtPostorder = UIComponentLibrary.CreateAJLabel("Post Order", 10,370,this, myLayout);
+
     }
 
     // Setup Text Fields
     private void SetupTextfields()
     {
-        searchBox = UIComponentLibrary.CreateAJTextField(20,60,50,this,myLayout);
-        /*
-        // set up all text fields
-*/
+        searchBox = UIComponentLibrary.CreateAJTextField(20,60,75,this,myLayout);
+
+        // Linked List
+        LinkedList = UIComponentLibrary.CreateAJTextArea(5,60,10,390,this, myLayout);
+        LinkedList.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        // Binary Search
+        BinarySearchtxt = UIComponentLibrary.CreateAJTextArea(5,60,10,490,this, myLayout);
+        BinarySearchtxt.setBorder(BorderFactory.createLineBorder(Color.black));
 
     }
+
 
     private void AddWindowListenerToForm() // action listner add
     {
