@@ -10,25 +10,29 @@ import java.util.ArrayList;
 public class mainScreen extends JFrame implements ActionListener {
     // declare buttons and layout
     SpringLayout myLayout = new SpringLayout();
-    JButton btnExit, btnSave, btnOpen, btnBinary, btnClear, btnSort, btnRAF;
-    JTextField[][] textFields = new JTextField[15][9];
-    JTextField txtSearch;
-    JTextField txtTeacher, txtClass, txtRoom, txtDate;
+    JButton btnExit, btnQuestionNo, btnTopic, btnSubtopic, btnClear, btnSort, btnConnect;
+    JLabel lblPolicyTitle, txtSearch,txtSort;
+    JTextField searchBox, txtClass, txtRoom, txtDate;
     ArrayList<Object[]> al = new ArrayList();
     MyModel quizModel;
     JTable table;
+    String Version = "V0.1";
 
 
     public mainScreen()
     {
         //initialise main screen
-        setSize(700, 500);
-        setLocation(450, 200);
+        setSize(1000, 700);
+        setLocation(0, 0);
         AddWindowListenerToForm();
         setLayout(myLayout);
+
+        setTitle("Perfect Policys Quiz | Version: |");
+        // Setup UI
         SetupButtons();
         SetupTextfields();
         setupTable();
+        SetupJlabels();
         setVisible(true);
         System.out.println("Initial size of al: " + al.size());
     }
@@ -44,9 +48,15 @@ public class mainScreen extends JFrame implements ActionListener {
 
         // Create some data
        // ArrayList<Object[]> al = new ArrayList();
+
+
         al.add(new Object[] {"Yes","No","-"});
         al.add(new Object[] {"Hi","there","-"});
         al.add(new Object[] {"True","False","-"});
+        al.add(new Object[] {"Cat","Dog","-"});
+        al.add(new Object[] {"Cat","Dog","-"});
+        al.add(new Object[] {"Cat","Dog","-"});
+        al.add(new Object[] {"Cat","Dog","-"});
         al.add(new Object[] {"Cat","Dog","-"});
 
         // constructor of JTable model
@@ -70,16 +80,31 @@ public class mainScreen extends JFrame implements ActionListener {
         JScrollPane scrollPane = table.createScrollPaneForTable(table);
         topPanel.add(scrollPane, BorderLayout.CENTER);
         topPanel.setPreferredSize(new Dimension(400, 120));
-        myLayout.putConstraint(SpringLayout.WEST, topPanel, 170, SpringLayout.WEST, this);
-        myLayout.putConstraint(SpringLayout.NORTH, topPanel, 40, SpringLayout.NORTH, this);
+        myLayout.putConstraint(SpringLayout.WEST, topPanel, 10, SpringLayout.WEST, this);
+        myLayout.putConstraint(SpringLayout.NORTH, topPanel, 150, SpringLayout.NORTH, this);
 
     }
 
-    //---------------------------------------------------------------------------------------------------
-    // Source: http://www.dreamincode.net/forums/topic/231112-from-basic-jtable-to-a-jtable-with-a-tablemodel/
-    // class that extends the AbstractTableModel
-    //---------------------------------------------------------------------------------------------------
+    // Bubble Sort
+    public static void bubbleSort(ArrayList<Object[]> arr)
+    {
 
+        for(int j=0; j<arr.size(); j++)
+        {
+            for(int i=j+1; i<arr.size(); i++)
+            {
+                if((arr.get(i)[0]).toString().compareToIgnoreCase(arr.get(j)[0].toString())<0)
+                {
+                    Object[] words = arr.get(j);
+                    arr.set(j, arr.get(i));
+                    arr.set(i, words);
+                }
+            }
+            System.out.println(arr.get(j)[0] + " - " + arr.get(j)[1]);
+        }
+    }
+
+    // Create Jtable Model
     class MyModel extends AbstractTableModel
     {
         ArrayList<Object[]> al;
@@ -153,47 +178,33 @@ public class mainScreen extends JFrame implements ActionListener {
 
 
 
-    // Read Code
-
-
-
+    // Setup Buttons
     private void SetupButtons()
     {
         // set up all buttons
-        btnExit = UIComponentLibrary.CreateJButton("Exit", 80, 25, 250, 350, this, this, myLayout);
-        btnOpen = UIComponentLibrary.CreateJButton("Open", 80, 25, 150, 350, this, this, myLayout);
-        btnSave = UIComponentLibrary.CreateJButton("Save", 80, 25, 50, 350, this, this, myLayout);
-        btnBinary = UIComponentLibrary.CreateJButton("Search", 120, 25, 25, 400, this, this, myLayout);
-        btnClear = UIComponentLibrary.CreateJButton("Clear", 80, 25, 350, 350, this, this, myLayout);
-        btnSort = UIComponentLibrary.CreateJButton("Sort", 80, 25, 450, 350, this, this, myLayout);
-        btnRAF = UIComponentLibrary.CreateJButton("RAF", 80, 25, 550, 350, this, this, myLayout);
+        btnQuestionNo = UIComponentLibrary.CreateJButton("Q #", 80, 20, 280, 275, this, this, myLayout);
+        btnSubtopic = UIComponentLibrary.CreateJButton("Subtopic", 90, 20, 170, 275, this, this, myLayout);
+        btnTopic = UIComponentLibrary.CreateJButton("Topic", 80, 20, 70, 275, this, this, myLayout);
+        btnExit = UIComponentLibrary.CreateJButton("Exit",100,20,100,305,this, this, myLayout);
+        btnConnect = UIComponentLibrary.CreateJButton("Connect",100,20,200,305,this, this, myLayout);
 
 
     }
+    // Setup Lables
+    private void SetupJlabels()
+    {
+        lblPolicyTitle = UIComponentLibrary.CreateAJLabel("Policy Questions", 160, 125, this, myLayout);
+        txtSearch = UIComponentLibrary.CreateAJLabel("Search:", 10,50,this, myLayout);
+        txtSort = UIComponentLibrary.CreateAJLabel("Sort By:", 10,275,this, myLayout);
+    }
 
+    // Setup Text Fields
     private void SetupTextfields()
     {
+        searchBox = UIComponentLibrary.CreateAJTextField(20,60,50,this,myLayout);
+        /*
         // set up all text fields
-        txtSearch = UIComponentLibrary.CreateAJTextField(10, 150, 405, this, myLayout);
-        txtTeacher = UIComponentLibrary.CreateAJTextField(10, 50, 10, this, myLayout);
-        txtClass = UIComponentLibrary.CreateAJTextField(10, 200, 10, this, myLayout);
-        txtRoom = UIComponentLibrary.CreateAJTextField(10, 350, 10, this, myLayout);
-        txtDate = UIComponentLibrary.CreateAJTextField(10, 500, 10, this, myLayout);
-        txtTeacher.setOpaque(true);
-        txtClass.setOpaque(true);
-        txtRoom.setOpaque(true);
-        txtDate.setOpaque(true);
-        txtTeacher.setBackground(Color.CYAN);
-        txtClass.setBackground(Color.CYAN);
-        txtRoom.setBackground(Color.CYAN);
-        txtDate.setBackground(Color.CYAN);
-        txtTeacher.setText("Teacher");
-        txtClass.setText("Class");
-        txtRoom.setText("Room");
-        txtDate.setText("Date");
-
-        //Iterates through 2D textfield array to generate and build individual textfields
-        //Y values indicate Y-Axis of array values X indicate X-Axis eg.array[y][x]
+*/
 
     }
 
@@ -208,6 +219,8 @@ public class mainScreen extends JFrame implements ActionListener {
         });
     }
 
+
+    // Action Listener
     @Override
     public void actionPerformed(ActionEvent actionEvent) // action listner class
     {

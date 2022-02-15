@@ -1,4 +1,5 @@
 package Quiz.Quiz;
 
-public class PolicyDTO {
+public class PolicyDTO
+{
 }
