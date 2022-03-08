@@ -307,13 +307,9 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     // Setup Functionality
 
-    public void displayQuestionNumber(int index){questionBox.setText(al.get(index)[0].toString());}
-    
-    private void DisplayText()
-    {
-       rowIndex = table.getSelectedRow();
-       displayQuestionNumber(rowIndex);
-    }
+    public void displayQuestionNumber(int index){ questionBox.setText(al.get(index)[0].toString());}
+
+    private void DisplayText() { rowIndex = table.getSelectedRow(); displayQuestionNumber(rowIndex); }
 
     // End Functionality
 
@@ -330,30 +326,19 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     }
 
     @Override
-    public void mouseClicked(MouseEvent e)
-    {
-    DisplayText();
-    }
+    public void mouseClicked(MouseEvent e) { DisplayText(); }
 
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) { }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
+    public void mouseReleased(MouseEvent e) { }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
+    public void mouseEntered(MouseEvent e) { }
 
     @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
+    public void mouseExited(MouseEvent e) { }
     // Action Listener
     @Override
     public void actionPerformed(ActionEvent actionEvent) // action listner class
