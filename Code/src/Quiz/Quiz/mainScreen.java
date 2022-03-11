@@ -309,7 +309,11 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     public void displayQuestionNumber(int index){ questionBox.setText(al.get(index)[0].toString());}
 
-    private void DisplayText() { rowIndex = table.getSelectedRow(); displayQuestionNumber(rowIndex); }
+    private void DisplayText()
+    {
+        rowIndex = table.getSelectedRow(); displayQuestionNumber(rowIndex);
+        topicBox.setText("Test");
+    }
 
     // End Functionality
 
