@@ -1,13 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="afcb6b92-2e17-43fb-8787-31dce43a5b11" name="Default Changelist" comment="" />
+    <list default="true" id="38aed881-392b-4aca-b9d9-0d880c9766ee" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/untitled104/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/untitled104/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Code.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/PolicyDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/PolicyIO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/UIComponentLibrary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/mainScreen$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/mainScreen$MyModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/mainScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/read.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Code.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/Quiz.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Code.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/PolicyDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/PolicyIO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/Quiz.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/UIComponentLibrary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/mainScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Quiz/read.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Code.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/PolicyDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/UIComponentLibrary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/mainScreen$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/mainScreen$MyModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/mainScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/read.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="24o15stUs2qsdCKuSlzDEqNJYSY" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="266BagdnY3eQwLR4yUXcBXKUPph" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,16 +78,22 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="afcb6b92-2e17-43fb-8787-31dce43a5b11" name="Default Changelist" comment="" />
-      <created>1644281948626</created>
+      <changelist id="38aed881-392b-4aca-b9d9-0d880c9766ee" name="Default Changelist" comment="" />
+      <created>1646734229768</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1644281948626</updated>
+      <updated>1646734229768</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../../../.." />
+    </ignored-roots>
   </component>
 </project>
