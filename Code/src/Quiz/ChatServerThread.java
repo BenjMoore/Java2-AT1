@@ -1,4 +1,4 @@
-package WordAssociation;
+
 //Source:
 //  Creating a simple Chat Client/Server Solution 
 //  http://pirate.shu.edu/~wachsmut/Teaching/CSAS2214/Virtual/Lectures/chat-client-server.html
@@ -9,7 +9,7 @@ import java.io.*;
 
 public class ChatServerThread extends Thread
 {
-    private Quiz.ChatServer server = null;
+    private ChatServer server = null;
     private Socket socket = null;
     private int ID = -1;
     private DataInputStream streamIn = null;

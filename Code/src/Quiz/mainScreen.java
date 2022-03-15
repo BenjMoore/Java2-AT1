@@ -1,4 +1,4 @@
-package Quiz;
+
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
@@ -126,7 +126,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     void println(String msg)
     {
         //display.appendText(msg + "\n");
-        lblPolicyTitle.setText(msg);
+        txtLinkedList.setText(msg);
     }
 
     public void getParameters()

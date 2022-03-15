@@ -2,64 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38aed881-392b-4aca-b9d9-0d880c9766ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/untitled104/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/untitled104/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Code.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/PolicyDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/PolicyIO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/UIComponentLibrary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/mainScreen$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/mainScreen$MyModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/mainScreen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/Quiz/Quiz/read.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Code.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/untitled104/out/production/Code/Quiz/Quiz.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Code.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/PolicyDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/PolicyIO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/Quiz.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/UIComponentLibrary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/mainScreen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Quiz/read.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Code.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/PolicyDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/UIComponentLibrary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/mainScreen$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/mainScreen$MyModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/mainScreen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/Code/Quiz/Quiz/read.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatClientThread1.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatClientThread1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatClientThread2.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatClientThread2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatServerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolicyDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PolicyDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolicyIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PolicyIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIComponentLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/UIComponentLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/mainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read.java" beforeDir="false" afterPath="$PROJECT_DIR$/read.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +32,35 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RunManager" selected="Application.ArrayListBubbleSortDemo">
+    <configuration name="ArrayListBubbleSortDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ArrayListBubbleSortDemo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChatServer" />
+      <module name="Quiz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Quiz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ArrayListBubbleSortDemo" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ChatServer" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
