@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="afcb6b92-2e17-43fb-8787-31dce43a5b11" name="Default Changelist" comment="" />
+    <list default="true" id="38aed881-392b-4aca-b9d9-0d880c9766ee" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatClientThread1.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatClientThread1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatClientThread2.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatClientThread2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ChatServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/ChatServerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolicyDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PolicyDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PolicyIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/PolicyIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIComponentLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/UIComponentLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/mainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/read.java" beforeDir="false" afterPath="$PROJECT_DIR$/read.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="24o15stUs2qsdCKuSlzDEqNJYSY" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="266BagdnY3eQwLR4yUXcBXKUPph" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -15,16 +31,51 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RunManager" selected="Application.ArrayListBubbleSortDemo">
+    <configuration name="ArrayListBubbleSortDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ArrayListBubbleSortDemo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChatServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChatServer" />
+      <module name="Quiz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Quiz" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ArrayListBubbleSortDemo" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ChatServer" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="afcb6b92-2e17-43fb-8787-31dce43a5b11" name="Default Changelist" comment="" />
-      <created>1644281948626</created>
+      <changelist id="38aed881-392b-4aca-b9d9-0d880c9766ee" name="Default Changelist" comment="" />
+      <created>1646734229768</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1644281948626</updated>
+      <updated>1646734229768</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/../../../.." />
+    </ignored-roots>
   </component>
 </project>

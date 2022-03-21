@@ -2,7 +2,7 @@
 //  Creating a simple Chat Client/Server Solution 
 //  http://pirate.shu.edu/~wachsmut/Teaching/CSAS2214/Virtual/Lectures/chat-client-server.html
 
-
+package Quiz;
 import java.net.*;
 import java.io.*;
 
