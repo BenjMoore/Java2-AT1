@@ -38,13 +38,13 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
             ,txtTopic,txtA,txtQN
             ,txtQnA,txtQnB,txtQnC
             ,txtQnD,txtQnE
-            ,txtSubtopic,txtStaffName;
+            ,txtSubtopic,txtStaffName,txtCorrectAns,lblNetworkMessage;
 
-    JButton btnSubmit,btnExit;
+    JButton btnSubmit,btnExit,btnConnect;
     // Declare Text Fields
     JTextField searchBox, topicBox,
             answerBox,aBox,bBox,
-            cBox,dBox,eBox, txtOne,subtopicBox,StaffName;
+            cBox,dBox,eBox, txtOne,subtopicBox,StaffName,CorrectAnswer;
 
     JTextArea questionBox;
 
@@ -71,9 +71,9 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
 
     private void SetupButtons()
     {
-    btnSubmit = UIComponentLibrary.CreateJButton("Submit",150,20,10,400,this,this,myLayout);
-    btnExit = UIComponentLibrary.CreateJButton("Exit",150,20,300,400,this,this,myLayout);
-
+    btnSubmit = UIComponentLibrary.CreateJButton("Submit",150,20,10,425,this,this,myLayout);
+    btnExit = UIComponentLibrary.CreateJButton("Exit",150,20,300,425,this,this,myLayout);
+    btnConnect = UIComponentLibrary.CreateJButton("Connect",150,20,10,10,this,this,myLayout);
     }
     private void SetupTextfields()
     {
@@ -86,6 +86,7 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
         dBox = UIComponentLibrary.CreateAJTextField(35,70,300,this,myLayout);
         eBox = UIComponentLibrary.CreateAJTextField(35,70,330,this,myLayout);
         StaffName = UIComponentLibrary.CreateAJTextField(35,70,60,this,myLayout);
+        CorrectAnswer = UIComponentLibrary.CreateAJTextField(15,110,400,this,myLayout);
         Border border = BorderFactory.createLineBorder(Color.black, 1);
         questionBox.setBorder(border);
         topicBox.setBorder(border);
@@ -111,7 +112,8 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
         txtQnD = UIComponentLibrary.CreateAJLabel("D:", 10,300,this, myLayout);
         txtQnE = UIComponentLibrary.CreateAJLabel("E:", 10,330,this, myLayout);
         txtStaffName = UIComponentLibrary.CreateAJLabel("Staff Name",5,60,this, myLayout);
-
+        txtCorrectAns = UIComponentLibrary.CreateAJLabel("Correct Answer:",10,400,this,myLayout);
+        lblNetworkMessage = UIComponentLibrary.CreateAJLabel("Message: ",10,375,this,myLayout);
         txtA.setOpaque(true);
         txtTitle.setOpaque(true);
         txtA.setBackground(Color.cyan);
@@ -136,6 +138,10 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnExit)
+        {
+            System.exit(0);
+        }
 
     }
 
