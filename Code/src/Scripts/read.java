@@ -1,4 +1,4 @@
-package Quiz;
+package Scripts;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,9 +10,7 @@ public class read {
 
         ArrayList<Object[]> al = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("PerfectPoliciesQuiz_SampleData.txt"));
-            FileInputStream fstream = new FileInputStream("PerfectPoliciesQuiz_SampleData.txt");
-            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new FileReader("C://temp/PerfectPoliciesQuiz_SampleData.txt"));
             int n = 1;
             String line = ""; // create line string
             while ((line = br.readLine()) != null) // while line not empty
@@ -28,14 +26,12 @@ public class read {
                 breaker[7] = (br.readLine());
                 breaker[8] = (br.readLine());
                 breaker[9] = (br.readLine());
-                
+
                 al.add(breaker);
             }
 
 
             br.close(); // close buffered reader
-            in.close();
-            fstream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

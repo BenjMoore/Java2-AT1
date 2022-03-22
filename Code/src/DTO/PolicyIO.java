@@ -1,4 +1,4 @@
-package Quiz;
+package DTO;
 
 public class PolicyIO {
 }

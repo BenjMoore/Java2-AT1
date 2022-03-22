@@ -1,11 +1,11 @@
-package Quiz;
+package IO;
+
+import Scripts.BubbleSort;
+import Server.ChatServer;
+import Scripts.read;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -22,7 +22,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.RowFilter;
 
 
 public class mainScreen extends JFrame implements ActionListener, MouseListener {
@@ -49,16 +48,15 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         try
         {
             this.socket = new Socket(serverName, serverPort);
-            this.println("Connected: " + socket);
             open();
         }
         catch (UnknownHostException uhe)
         {
-            this.println("Host unknown: " + uhe.getMessage());
+            System.out.println("Host unknown: " + uhe.getMessage());
         }
         catch (IOException ioe)
         {
-            this.println("Unexpected exception: " + ioe.getMessage());
+            System.out.println("Unexpected exception: " + ioe.getMessage());
         }
     }
 
@@ -166,7 +164,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
             ,txtPreorder,txtPostorder,txtInorder
             ,txtTopic,txtA,txtQN
             ,txtQnA,txtQnB,txtQnC
-            ,txtQnD,txtQnE,txtCorrectAns;
+            ,txtQnD,txtQnE,txtCorrectAns,txtConnectionStatus;
 
     // Declare Text Fields
     JTextField searchBox, topicBox, questionBox,
@@ -180,16 +178,18 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     MyModel quizModel;
     JTable table;
     int rowIndex = 0;
+    public BubbleSort bubble = new BubbleSort();
+
 
     // Initialise Main Screen
     public mainScreen() throws IOException {
         //initialise main screen
-        setSize(800, 700);
+        setSize(1000, 700);
         setLocation(0, 0);
         AddWindowListenerToForm();
         setLayout(myLayout);
         setResizable(false);
-
+        //new BubbleSort(al);
 
         setTitle("Perfect Policys Quiz | Version: 1.0 |");
         // Setup UI
@@ -210,6 +210,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         topPanel.setLayout(new BorderLayout());
         add(topPanel);
 
+
         // Create column names
         String columnNames[] =
                 { "Question #", "Topic", "Subtopic"};
@@ -224,7 +225,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
         // Create a new table instance
         table = new JTable(quizModel);
-
+        table.addMouseListener(this);
         // Configure some of JTable's paramters
         table.isForegroundSet();
         table.setShowHorizontalLines(false);
@@ -319,23 +320,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     // Sort Algorithms
 
     // Bubble Sort
-    public static void bubbleSort(ArrayList<Object[]> arr)
-    {
 
-        for(int j=0; j<arr.size(); j++)
-        {
-            for(int i=j+1; i<arr.size(); i++)
-            {
-                if((arr.get(i)[0]).toString().compareToIgnoreCase(arr.get(j)[0].toString())<0)
-                {
-                    Object[] words = arr.get(j);
-                    arr.set(j, arr.get(i));
-                    arr.set(i, words);
-                }
-            }
-            System.out.println(arr.get(j)[0] + " - " + arr.get(j)[1]);
-        }
-    }
     // Setup Buttons
     private void SetupButtons()
     {
@@ -357,7 +342,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     // Setup Lables
     private void SetupJlabels()
     {
-        lblPolicyTitle = UIComponentLibrary.CreateAJLabel("                                                    Policy Questions                                                       ", 0, 125, this, myLayout);
+        lblPolicyTitle = UIComponentLibrary.CreateAJLabel("                                              Policy Questions                                                                ", 0, 125, this, myLayout);
         lblPolicyTitle.setOpaque(true);
         lblPolicyTitle.setBackground(Color.cyan);
 
@@ -372,7 +357,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         txtBinary.setOpaque(true);
         txtBinary.setBackground(Color.cyan);
 
-        txtTitle = UIComponentLibrary.CreateAJLabel("                                                                  Perfect Policy                                                                                           ",0,10,this,myLayout);
+        txtTitle = UIComponentLibrary.CreateAJLabel("                                                                                          Perfect Policy                                                                                                     ",0,10,this,myLayout);
         txtTitle.setFont(new Font("Serif", Font.PLAIN, 20));
         txtTitle.setOpaque(true);
         txtTitle.setBackground(Color.cyan);
@@ -394,7 +379,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         // Question Viewer
         txtTopic = UIComponentLibrary.CreateAJLabel("Topic:", 500,60,this, myLayout);
         txtQN = UIComponentLibrary.CreateAJLabel("Q# :", 500,90,this, myLayout);
-        txtA = UIComponentLibrary.CreateAJLabel("Answer:", 500,120,this, myLayout);
+        txtA = UIComponentLibrary.CreateAJLabel("Options", 630,120,this, myLayout);
         txtQnA = UIComponentLibrary.CreateAJLabel("A:", 500,150,this, myLayout);
         txtQnB = UIComponentLibrary.CreateAJLabel("B:", 500,180,this, myLayout);
         txtQnC = UIComponentLibrary.CreateAJLabel("C:", 500,210,this, myLayout);
@@ -404,9 +389,10 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         // Answers
         txtCorrectAns = UIComponentLibrary.CreateAJLabel("Correct Answer",450,325,this,myLayout);
 
+        // Connection Status
+        txtConnectionStatus = UIComponentLibrary.CreateAJLabel("Disconnected",820,625,this,myLayout);
 
     }
-
     // Setup Text Fields
     private void SetupTextfields()
     {
@@ -421,20 +407,33 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         BinarySearchtxt.setBorder(BorderFactory.createLineBorder(Color.black));
 
         // Question Fields
-        topicBox = UIComponentLibrary.CreateAJTextField(20,550,60,this,myLayout);
-        questionBox = UIComponentLibrary.CreateAJTextField(20,550,90,this,myLayout);
-        answerBox = UIComponentLibrary.CreateAJTextField(20,550,120,this,myLayout);
-        aBox = UIComponentLibrary.CreateAJTextField(20,550,150,this,myLayout);
-        bBox = UIComponentLibrary.CreateAJTextField(20,550,180,this,myLayout);
-        cBox = UIComponentLibrary.CreateAJTextField(20,550,210,this,myLayout);
-        dBox = UIComponentLibrary.CreateAJTextField(20,550,240,this,myLayout);
-        eBox = UIComponentLibrary.CreateAJTextField(20,550,270,this,myLayout);
+        topicBox = UIComponentLibrary.CreateAJTextField(35,550,60,this,myLayout);
+        questionBox = UIComponentLibrary.CreateAJTextField(35,550,90,this,myLayout);
+        aBox = UIComponentLibrary.CreateAJTextField(35,550,150,this,myLayout);
+        bBox = UIComponentLibrary.CreateAJTextField(35,550,180,this,myLayout);
+        cBox = UIComponentLibrary.CreateAJTextField(35,550,210,this,myLayout);
+        dBox = UIComponentLibrary.CreateAJTextField(35,550,240,this,myLayout);
+        eBox = UIComponentLibrary.CreateAJTextField(35,550,270,this,myLayout);
 
         txtOne = UIComponentLibrary.CreateAJTextField(5,550,325,this,myLayout);
     }
-
     // Setup Functionality
+    public void bubblesort()
+    {
+        bubble.bubbleSort(al);
+    }
+ public void displayQuestion(int index)
+ {
+     txtQN.setText("Q# : " + al.get(index)[0].toString());
+     topicBox.setText(al.get(index)[1].toString());
+     questionBox.setText(al.get(index)[3].toString());
+     aBox.setText(al.get(index)[4].toString());
+     bBox.setText(al.get(index)[5].toString());
+     cBox.setText(al.get(index)[6].toString());
+     dBox.setText(al.get(index)[7].toString());
+     eBox.setText(al.get(index)[8].toString());
 
+ }
     public void displayQuestionNumber(int index){ questionBox.setText(al.get(index)[0].toString());}
 
     private void DisplayText()
@@ -443,54 +442,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         displayQuestionNumber(rowIndex);
         topicBox.setText("Test");
     }
-/*
-    private TableRowSorter<TableModel> rowSorter
-            = new TableRowSorter<>(table.getModel());
 
-
-    public void TestTableSortFilter() {
-        table.setRowSorter(rowSorter);
-
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(new JLabel("Specify a word to match:"),
-                BorderLayout.WEST);
-        panel.add(table, BorderLayout.CENTER);
-
-        setLayout(new BorderLayout());
-        add(panel, BorderLayout.SOUTH);
-        add(new JScrollPane(table), BorderLayout.CENTER);
-
-        //.getDocument().addDocumentListener(new DocumentListener(){
-
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                String text = jtfFilter.getText();
-
-                if (text.trim().length() == 0) {
-                    rowSorter.setRowFilter(null);
-                } else {
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-                }
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                String text = jtfFilter.getText();
-
-                if (text.trim().length() == 0) {
-                    rowSorter.setRowFilter(null);
-                } else {
-                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-                }
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-        });
-    }*/
     // End Functionality
 
     // action listner add
@@ -506,7 +458,10 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) { DisplayText(); }
+    public void mouseClicked(MouseEvent e) {
+        rowIndex = table.getSelectedRow();
+        displayQuestion(rowIndex);
+    }
 
     @Override
     public void mousePressed(MouseEvent e) { }
@@ -533,7 +488,11 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         if(actionEvent.getSource() == btnInorder)
         {
 
-
+        }
+        if(actionEvent.getSource() == btnTopic)
+        {
+            bubblesort();
+            quizModel.fireTableDataChanged();
         }
 
     }

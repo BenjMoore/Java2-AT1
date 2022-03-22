@@ -4,6 +4,8 @@ package Quiz;
 //  http://pirate.shu.edu/~wachsmut/Teaching/CSAS2214/Virtual/Lectures/chat-client-server.html
 
 
+import Server.ChatServer;
+
 import java.net.*;
 import java.io.*;
 
