@@ -42,21 +42,27 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     public static void main(String[] args) throws IOException {new mainScreen();}
 
-    public void connect(String serverName, int serverPort)
-    {
-        this.println("Establishing connection. Please wait ...");
+    public void connect(String serverName, int serverPort) throws InterruptedException {
+        txtConnectionStatus.setText("Establishing connection. Please wait ...");
         try
         {
             this.socket = new Socket(serverName, serverPort);
+            txtConnectionStatus.setText("Server Connection: Connected! {Port ["+serverPort+"] || Server Name: ["+serverName+"] }");
             open();
         }
         catch (UnknownHostException uhe)
         {
             System.out.println("Host unknown: " + uhe.getMessage());
+            txtConnectionStatus.setText("Error: Host Unknown!!, Ensure Server Has Started");
+            socket.wait(1000);
+            txtConnectionStatus.setText("Server Connection: Disconnected");
+
         }
         catch (IOException ioe)
         {
             System.out.println("Unexpected exception: " + ioe.getMessage());
+            txtConnectionStatus.setText("Error: IOException, Ensure Server Has Started");
+
         }
     }
 
@@ -164,12 +170,13 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
             ,txtPreorder,txtPostorder,txtInorder
             ,txtTopic,txtA,txtQN
             ,txtQnA,txtQnB,txtQnC
-            ,txtQnD,txtQnE,txtCorrectAns,txtConnectionStatus;
+            ,txtQnD,txtQnE,txtCorrectAns,txtConnectionStatus
+            ,txtSubtopic;
 
     // Declare Text Fields
     JTextField searchBox, topicBox, questionBox,
             answerBox,aBox,bBox,
-            cBox,dBox,eBox, txtOne;
+            cBox,dBox,eBox, txtOne,subtopicBox;
 
     // Declare Text Area
     JTextArea LinkedList, BinarySearchtxt;
@@ -335,7 +342,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         btnPostorder = UIComponentLibrary.CreateJButton("Display",100,20,410,600,this, this, myLayout);
         btnDisplay = UIComponentLibrary.CreateJButton("Display",100,20,675,580,this, this, myLayout);
         btnSave = UIComponentLibrary.CreateJButton("Save",100,20,675,620,this, this, myLayout);
-        btnSend = UIComponentLibrary.CreateJButton("Send",100,20,620,325,this,this,myLayout);
+        btnSend = UIComponentLibrary.CreateJButton("Send",100,20,750,325,this,this,myLayout);
 
 
     }
@@ -378,19 +385,20 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
         // Question Viewer
         txtTopic = UIComponentLibrary.CreateAJLabel("Topic:", 500,60,this, myLayout);
-        txtQN = UIComponentLibrary.CreateAJLabel("Q# :", 500,90,this, myLayout);
-        txtA = UIComponentLibrary.CreateAJLabel("Options", 630,120,this, myLayout);
-        txtQnA = UIComponentLibrary.CreateAJLabel("A:", 500,150,this, myLayout);
-        txtQnB = UIComponentLibrary.CreateAJLabel("B:", 500,180,this, myLayout);
-        txtQnC = UIComponentLibrary.CreateAJLabel("C:", 500,210,this, myLayout);
-        txtQnD = UIComponentLibrary.CreateAJLabel("D:", 500,240,this, myLayout);
-        txtQnE = UIComponentLibrary.CreateAJLabel("E:", 500,270,this, myLayout);
+        txtSubtopic = UIComponentLibrary.CreateAJLabel("Subtopic",500,90,this,myLayout);
+        txtQN = UIComponentLibrary.CreateAJLabel("Q# :", 500,120,this, myLayout);
+        txtA = UIComponentLibrary.CreateAJLabel("Options", 720,150,this, myLayout);
+        txtQnA = UIComponentLibrary.CreateAJLabel("A:", 500,180,this, myLayout);
+        txtQnB = UIComponentLibrary.CreateAJLabel("B:", 500,210,this, myLayout);
+        txtQnC = UIComponentLibrary.CreateAJLabel("C:", 500,240,this, myLayout);
+        txtQnD = UIComponentLibrary.CreateAJLabel("D:", 500,270,this, myLayout);
+        txtQnE = UIComponentLibrary.CreateAJLabel("E:", 500,300,this, myLayout);
 
         // Answers
-        txtCorrectAns = UIComponentLibrary.CreateAJLabel("Correct Answer",450,325,this,myLayout);
+        txtCorrectAns = UIComponentLibrary.CreateAJLabel("Correct Answer",550,325,this,myLayout);
 
         // Connection Status
-        txtConnectionStatus = UIComponentLibrary.CreateAJLabel("Disconnected",820,625,this,myLayout);
+        txtConnectionStatus = UIComponentLibrary.CreateAJLabel("Server Connection: Disconnected",10,640,this,myLayout);
 
     }
     // Setup Text Fields
@@ -408,16 +416,19 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
         // Question Fields
         topicBox = UIComponentLibrary.CreateAJTextField(35,550,60,this,myLayout);
-        questionBox = UIComponentLibrary.CreateAJTextField(35,550,90,this,myLayout);
-        aBox = UIComponentLibrary.CreateAJTextField(35,550,150,this,myLayout);
-        bBox = UIComponentLibrary.CreateAJTextField(35,550,180,this,myLayout);
-        cBox = UIComponentLibrary.CreateAJTextField(35,550,210,this,myLayout);
-        dBox = UIComponentLibrary.CreateAJTextField(35,550,240,this,myLayout);
-        eBox = UIComponentLibrary.CreateAJTextField(35,550,270,this,myLayout);
+        subtopicBox = UIComponentLibrary.CreateAJTextField(35,550,90,this,myLayout);
+        questionBox = UIComponentLibrary.CreateAJTextField(35,550,120,this,myLayout);
+        aBox = UIComponentLibrary.CreateAJTextField(35,550,180,this,myLayout);
+        bBox = UIComponentLibrary.CreateAJTextField(35,550,210,this,myLayout);
+        cBox = UIComponentLibrary.CreateAJTextField(35,550,240,this,myLayout);
+        dBox = UIComponentLibrary.CreateAJTextField(35,550,270,this,myLayout);
+        eBox = UIComponentLibrary.CreateAJTextField(35,550,300,this,myLayout);
 
-        txtOne = UIComponentLibrary.CreateAJTextField(5,550,325,this,myLayout);
+        txtOne = UIComponentLibrary.CreateAJTextField(7,650,325,this,myLayout);
     }
     // Setup Functionality
+
+
     public void bubblesort()
     {
         bubble.bubbleSort(al);
@@ -427,6 +438,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
      txtQN.setText("Q# : " + al.get(index)[0].toString());
      topicBox.setText(al.get(index)[1].toString());
      questionBox.setText(al.get(index)[3].toString());
+     subtopicBox.setText(al.get(index)[2].toString());
      aBox.setText(al.get(index)[4].toString());
      bBox.setText(al.get(index)[5].toString());
      cBox.setText(al.get(index)[6].toString());
@@ -483,7 +495,15 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
             System.exit(0); // exit
         }
         if(actionEvent.getSource() == btnConnect){
-            connect("localhost",4444);
+            try
+            {
+                connect("localhost",4444);
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+                txtConnectionStatus.setText("Error" + e);
+            }
         }
         if(actionEvent.getSource() == btnInorder)
         {
