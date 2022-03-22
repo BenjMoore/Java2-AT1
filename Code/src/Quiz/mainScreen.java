@@ -1,7 +1,11 @@
 package Quiz;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -10,6 +14,15 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.RowFilter;
 
 
 public class mainScreen extends JFrame implements ActionListener, MouseListener {
@@ -18,7 +31,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     private Socket socket = null;
     private DataInputStream console = null;
     private DataOutputStream streamOut = null;
-    private ChatClientThread1 client = null;
+    private ChatServer.ChatClientThread1 client = null;
     private String serverName = "localhost";
     private int serverPort = 4444;
 
@@ -28,24 +41,24 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     //static AssocData wordList[] = new AssocData[numberOfAssociatedWords];
     //----------------------------------------
 
-    public static void main(String[] args){new mainScreen();}
+    public static void main(String[] args) throws IOException {new mainScreen();}
 
     public void connect(String serverName, int serverPort)
     {
-        println("Establishing connection. Please wait ...");
+        this.println("Establishing connection. Please wait ...");
         try
         {
-            socket = new Socket(serverName, serverPort);
-            println("Connected: " + socket);
+            this.socket = new Socket(serverName, serverPort);
+            this.println("Connected: " + socket);
             open();
         }
         catch (UnknownHostException uhe)
         {
-            println("Host unknown: " + uhe.getMessage());
+            this.println("Host unknown: " + uhe.getMessage());
         }
         catch (IOException ioe)
         {
-            println("Unexpected exception: " + ioe.getMessage());
+            this.println("Unexpected exception: " + ioe.getMessage());
         }
     }
 
@@ -143,7 +156,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     // Declare Buttons
     JButton btnExit, btnQuestionNo, btnTopic, btnSubtopic
-            , btnSend, btnSort, btnConnect
+            ,btnSend, btnSort, btnConnect
             ,btnPreorder,btnPostorder,btnInorder
             ,btnDisplay,btnSave;
 
@@ -162,15 +175,14 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     // Declare Text Area
     JTextArea LinkedList, BinarySearchtxt;
-
+    public read readclass = new read();
     ArrayList<Object[]> al = new ArrayList();
     MyModel quizModel;
     JTable table;
     int rowIndex = 0;
 
     // Initialise Main Screen
-    public mainScreen()
-    {
+    public mainScreen() throws IOException {
         //initialise main screen
         setSize(800, 700);
         setLocation(0, 0);
@@ -193,8 +205,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     // JTable
 
     // Setup JTable
-    public void setupTable()
-    {
+    public void setupTable() throws IOException {
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
         add(topPanel);
@@ -207,15 +218,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
        // ArrayList<Object[]> al = new ArrayList();
 
 
-        al.add(new Object[] {"1","Test","-"});
-        al.add(new Object[] {"2","Test","-"});
-        al.add(new Object[] {"3","Test","-"});
-        al.add(new Object[] {"4","Test","-"});
-        al.add(new Object[] {"5","Test","-"});
-        al.add(new Object[] {"6","Test","-"});
-        al.add(new Object[] {"7","Test","-"});
-        al.add(new Object[] {"8","Test","-"});
-
+        al = read.read();
         // constructor of JTable model
         quizModel = new MyModel(al, columnNames);
 
@@ -239,7 +242,6 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         topPanel.setPreferredSize(new Dimension(400, 150));
         myLayout.putConstraint(SpringLayout.WEST, topPanel, 10, SpringLayout.WEST, this);
         myLayout.putConstraint(SpringLayout.NORTH, topPanel, 150, SpringLayout.NORTH, this);
-
     }
 
 
@@ -437,10 +439,58 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     private void DisplayText()
     {
-        rowIndex = table.getSelectedRow(); displayQuestionNumber(rowIndex);
+        rowIndex = table.getSelectedRow();
+        displayQuestionNumber(rowIndex);
         topicBox.setText("Test");
     }
+/*
+    private TableRowSorter<TableModel> rowSorter
+            = new TableRowSorter<>(table.getModel());
 
+
+    public void TestTableSortFilter() {
+        table.setRowSorter(rowSorter);
+
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.add(new JLabel("Specify a word to match:"),
+                BorderLayout.WEST);
+        panel.add(table, BorderLayout.CENTER);
+
+        setLayout(new BorderLayout());
+        add(panel, BorderLayout.SOUTH);
+        add(new JScrollPane(table), BorderLayout.CENTER);
+
+        //.getDocument().addDocumentListener(new DocumentListener(){
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String text = jtfFilter.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                String text = jtfFilter.getText();
+
+                if (text.trim().length() == 0) {
+                    rowSorter.setRowFilter(null);
+                } else {
+                    rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+        });
+    }*/
     // End Functionality
 
     // action listner add
@@ -479,6 +529,11 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         }
         if(actionEvent.getSource() == btnConnect){
             connect("localhost",4444);
+        }
+        if(actionEvent.getSource() == btnInorder)
+        {
+
+
         }
 
     }
