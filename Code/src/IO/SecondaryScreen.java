@@ -39,12 +39,12 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
             ,txtTopic,txtA,txtQN
             ,txtQnA,txtQnB,txtQnC
             ,txtQnD,txtQnE,txtCorrectAns,txtConnectionStatus
-            ,txtSubtopic;
+            ,txtSubtopic,txtStaffName;
 
     // Declare Text Fields
     JTextField searchBox, topicBox, questionBox,
             answerBox,aBox,bBox,
-            cBox,dBox,eBox, txtOne,subtopicBox;
+            cBox,dBox,eBox, txtOne,subtopicBox,StaffName;
 
     public SecondaryScreen() throws IOException
     {
@@ -65,12 +65,44 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
         System.out.println("Initial size of al: ");
 }
 
-    private void SetupButtons(){}
-    private void SetupTextfields(){
-
+    private void SetupButtons()
+    {
 
     }
-    private void SetupJlabels(){}
+    private void SetupTextfields()
+    {
+        topicBox = UIComponentLibrary.CreateAJTextField(35,70,60,this,myLayout);
+        subtopicBox = UIComponentLibrary.CreateAJTextField(35,70,90,this,myLayout);
+        questionBox = UIComponentLibrary.CreateAJTextField(35,70,120,this,myLayout);
+        aBox = UIComponentLibrary.CreateAJTextField(35,70,180,this,myLayout);
+        bBox = UIComponentLibrary.CreateAJTextField(35,70,210,this,myLayout);
+        cBox = UIComponentLibrary.CreateAJTextField(35,70,240,this,myLayout);
+        dBox = UIComponentLibrary.CreateAJTextField(35,70,270,this,myLayout);
+        eBox = UIComponentLibrary.CreateAJTextField(35,70,300,this,myLayout);
+        StaffName = UIComponentLibrary.CreateAJTextField(25,90,400,this,myLayout);
+
+    }
+    private void SetupJlabels()
+    {
+        txtTitle = UIComponentLibrary.CreateAJLabel("Perfect Policy's", 190,10,this,myLayout);
+        txtTopic = UIComponentLibrary.CreateAJLabel("Topic:", 10,60,this, myLayout);
+        txtSubtopic = UIComponentLibrary.CreateAJLabel("Subtopic",10,90,this,myLayout);
+        txtQN = UIComponentLibrary.CreateAJLabel("Q# :", 10,120,this, myLayout);
+        txtA = UIComponentLibrary.CreateAJLabel("Options", 235,150,this, myLayout);
+        txtQnA = UIComponentLibrary.CreateAJLabel("A:", 10,180,this, myLayout);
+        txtQnB = UIComponentLibrary.CreateAJLabel("B:", 10,210,this, myLayout);
+        txtQnC = UIComponentLibrary.CreateAJLabel("C:", 10,240,this, myLayout);
+        txtQnD = UIComponentLibrary.CreateAJLabel("D:", 10,270,this, myLayout);
+        txtQnE = UIComponentLibrary.CreateAJLabel("E:", 10,300,this, myLayout);
+        txtStaffName = UIComponentLibrary.CreateAJLabel("Staff Name",10,400,this, myLayout);
+
+        txtA.setOpaque(true);
+        txtTitle.setOpaque(true);
+        txtA.setBackground(Color.cyan);
+        txtTitle.setBackground(Color.cyan);
+        txtTitle.setFont(new Font("Calbri",Font.PLAIN,18));
+
+    }
 
     // action listner add
     private void AddWindowListenerToForm()

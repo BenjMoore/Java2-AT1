@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
+import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -507,12 +508,22 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         }
         if(actionEvent.getSource() == btnInorder)
         {
-
+//
         }
         if(actionEvent.getSource() == btnTopic)
         {
             bubblesort();
             quizModel.fireTableDataChanged();
+        }
+        if (actionEvent.getSource() == btnDisplay){
+            try
+            {
+                new SecondaryScreen();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
 
     }
