@@ -533,6 +533,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         {
             theTree.inOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
+
         }
         if(actionEvent.getSource() == btnPreorder)
         {
