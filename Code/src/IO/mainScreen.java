@@ -35,7 +35,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     private String serverName = "localhost";
     private int serverPort = 4444;
     DList linkedList = new DList();
-
+    BinaryTree theTree = new BinaryTree();
     public static void main(String[] args) throws IOException {new mainScreen();}
 
     public void connect(String serverName, int serverPort) throws InterruptedException {
@@ -158,7 +158,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
             ,txtTopic,txtA,txtQN
             ,txtQnA,txtQnB,txtQnC
             ,txtQnD,txtQnE,txtCorrectAns,txtConnectionStatus
-            ,txtSubtopic;
+            ,txtSubtopic,txtqnNo;
 
     // Declare Text Fields
     JTextField searchBox, topicBox, questionBox,
@@ -380,6 +380,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         txtQnC = UIComponentLibrary.CreateAJLabel("C:", 500,240,this, myLayout);
         txtQnD = UIComponentLibrary.CreateAJLabel("D:", 500,270,this, myLayout);
         txtQnE = UIComponentLibrary.CreateAJLabel("E:", 500,300,this, myLayout);
+        txtqnNo= UIComponentLibrary.CreateAJLabel("", 523,120,this, myLayout);
 
         // Answers
         txtCorrectAns = UIComponentLibrary.CreateAJLabel("Correct Answer",550,325,this,myLayout);
@@ -403,6 +404,8 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         // Binary Search
         BinarySearchtxt = UIComponentLibrary.CreateAJTextArea(5,70,10,490,this, myLayout);
         BinarySearchtxt.setBorder(BorderFactory.createLineBorder(Color.black));
+        BinarySearchtxt.setLineWrap(true);
+        BinarySearchtxt.setWrapStyleWord(true);
 
         // Question Fields
         topicBox = UIComponentLibrary.CreateAJTextField(35,550,60,this,myLayout);
@@ -425,7 +428,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     }
  public void displayQuestion(int index)
  {
-     txtQN.setText("Q# : " + al.get(index)[0].toString());
+     txtqnNo.setText(al.get(index)[0].toString());
      topicBox.setText(al.get(index)[1].toString());
      questionBox.setText(al.get(index)[3].toString());
      subtopicBox.setText(al.get(index)[2].toString());
@@ -521,7 +524,25 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
             // question number, topic, subtopic
            linkedList.head.append(new Node( " <-->  " + questionBox.getText()+ "--" + topicBox.getText() + "--" + subtopicBox.getText()));
            LinkedList.setText(linkedList.toString());
+           theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText());
+
             // System.out.println("Success");
+        }
+        theTree.binaryString = "";
+        if(actionEvent.getSource() == btnInorder)
+        {
+            theTree.inOrderTraverseTree(theTree.root);
+            BinarySearchtxt.setText(theTree.binaryString);
+        }
+        if(actionEvent.getSource() == btnPreorder)
+        {
+            theTree.preorderTraverseTree(theTree.root);
+            BinarySearchtxt.setText(theTree.binaryString);
+        }
+        if(actionEvent.getSource() == btnPostorder)
+        {
+            theTree.postOrderTraverseTree(theTree.root);
+            BinarySearchtxt.setText(theTree.binaryString);
         }
 
 }}

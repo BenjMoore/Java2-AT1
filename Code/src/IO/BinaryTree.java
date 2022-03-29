@@ -3,7 +3,7 @@ package IO;//Source:  http://www.newthinktank.com/2013/03/binary-tree-in-java/
 
 
 class BinaryTree {
-
+	String binaryString = "";
 	BTNode root;
 
 	public void addNode(int key, String name) {
@@ -93,6 +93,7 @@ class BinaryTree {
 			// Visit the currently focused on BTNode
 
 			System.out.println(focusNode);
+			binaryString = binaryString + focusNode;
 
 			// Traverse the right BTNode
 
@@ -110,6 +111,7 @@ class BinaryTree {
 
 			preorderTraverseTree(focusNode.leftChild);
 			preorderTraverseTree(focusNode.rightChild);
+			binaryString = binaryString + focusNode;
 
 		}
 
@@ -123,6 +125,7 @@ class BinaryTree {
 			postOrderTraverseTree(focusNode.rightChild);
 
 			System.out.println(focusNode);
+			binaryString = binaryString + focusNode;
 
 		}
 
