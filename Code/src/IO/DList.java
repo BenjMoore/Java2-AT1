@@ -27,7 +27,7 @@ package IO;
         {                // constructor for head Node 
             prev = this;           // of an empty doubly-linked list
             next = this;
-            myString= new String();
+            myString= "No Data";
 
             // data = 'H';           // not used except for printing data in list head
         }
@@ -36,7 +36,7 @@ package IO;
         {       // constructor for a Node with data
             prev = null;
             next = null;
-            myString= new String();
+            myString= str1;
            
             //this.data = data;     // set argument data to instance variable data
         }

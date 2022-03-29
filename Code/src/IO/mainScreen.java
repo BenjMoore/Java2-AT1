@@ -35,11 +35,6 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     private String serverName = "localhost";
     private int serverPort = 4444;
     DList linkedList = new DList();
-    // NEW -----------------------------------
-    static int numberOfAssociatedWords = 50;
-    static int currentAssocWord = 0;
-    //static AssocData wordList[] = new AssocData[numberOfAssociatedWords];
-    //----------------------------------------
 
     public static void main(String[] args) throws IOException {new mainScreen();}
 
@@ -93,16 +88,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         {
             println(msg);
 
-            // NEW -----------------------------------
 
-            currentAssocWord++;
-            // wordList[currentAssocWord] = new AssocData(msg);
-            for (int i = 0; i < currentAssocWord; i++)
-            {
-                //    System.out.println("Handle Method: " + i + " - " + wordList[i].words);
-            }
-
-            //----------------------------------------
 
         }
     }
@@ -408,7 +394,10 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         searchBox = UIComponentLibrary.CreateAJTextField(20,60,75,this,myLayout);
 
         // Linked List
+
         LinkedList = UIComponentLibrary.CreateAJTextArea(5,70,10,390,this, myLayout);
+        LinkedList.setLineWrap(true);
+        LinkedList.setWrapStyleWord(true);
         LinkedList.setBorder(BorderFactory.createLineBorder(Color.black));
 
         // Binary Search
@@ -510,7 +499,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         }
         if(actionEvent.getSource() == btnInorder)
         {
-//
+
         }
         if(actionEvent.getSource() == btnTopic)
         {
@@ -530,8 +519,9 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         if(actionEvent.getSource() == btnSend)
         {
             // question number, topic, subtopic
-           linkedList.head.append(new Node(txtQN.getText()+ "--" + txtTopic + "--" + txtSubtopic.getText()));       // add Node with data '1'
-
+           linkedList.head.append(new Node( " <-->  " + questionBox.getText()+ "--" + topicBox.getText() + "--" + subtopicBox.getText()));
+           LinkedList.setText(linkedList.toString());
+            // System.out.println("Success");
         }
 
 }}
