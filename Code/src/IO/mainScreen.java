@@ -1,6 +1,7 @@
 package IO;
 
 import Scripts.BubbleSort;
+
 import Server.ChatServer;
 import Scripts.read;
 
@@ -24,7 +25,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-
 public class mainScreen extends JFrame implements ActionListener, MouseListener {
 
     //CHAT RELATED ---------------------------
@@ -34,7 +34,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     private ChatServer.ChatClientThread1 client = null;
     private String serverName = "localhost";
     private int serverPort = 4444;
-
+    DList linkedList = new DList();
     // NEW -----------------------------------
     static int numberOfAssociatedWords = 50;
     static int currentAssocWord = 0;
@@ -456,6 +456,8 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         topicBox.setText("Test");
     }
 
+    private void search(){}
+
     // End Functionality
 
     // action listner add
@@ -525,10 +527,14 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
                 e.printStackTrace();
             }
         }
+        if(actionEvent.getSource() == btnSend)
+        {
+            // question number, topic, subtopic
+           linkedList.head.append(new Node(txtQN.getText()+ "--" + txtTopic + "--" + txtSubtopic.getText()));       // add Node with data '1'
 
-    }
+        }
 
-}
+}}
 
 
 
