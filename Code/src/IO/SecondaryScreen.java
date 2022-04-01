@@ -29,6 +29,11 @@ import IO.mainScreen;
 import java.io.IOException;
 
 public class SecondaryScreen extends JFrame implements ActionListener, MouseListener{
+    private Socket socket = null;
+    private DataInputStream console = null;
+    private DataOutputStream streamOut = null;
+    private String serverName = "localhost";
+    private int serverPort = 4444;
 
     public static void main(String[] args)throws IOException {new SecondaryScreen();}
 
