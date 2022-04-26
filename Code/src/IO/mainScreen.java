@@ -24,6 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableRowSorter;
 
 public class mainScreen extends JFrame implements ActionListener, MouseListener {
 
@@ -271,6 +272,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     JTable table;
     int rowIndex = 0;
     public BubbleSort bubble = new BubbleSort();
+    TableRowSorter sorter = new TableRowSorter(quizModel);
 
 
     // Initialise Main Screen
@@ -546,17 +548,9 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     private void search()
     {
-
-        for(int i = 0; i < table.getRowCount(); i++)
-        {
-            for(int j = 0; j < table.getColumnCount(); j++)
-            {
-                if(table.getModel().getValueAt(i, j).equals(searchBox.getText()))
-                {
-
-                }
-            }
-        }
+        table.setRowSorter( sorter );
+        String title = searchBox.getText();
+        sorter.setRowFilter(RowFilter.regexFilter(title));
     }
 
     // End Functionality
@@ -613,6 +607,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         {
 
         }
+
         if(actionEvent.getSource() == btnTopic) { bubblesort();quizModel.fireTableDataChanged(); }
 
         if (actionEvent.getSource() == btnDisplay){ try { new SecondaryScreen(); } catch (IOException e) { e.printStackTrace(); } }
