@@ -247,7 +247,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     JButton btnExit, btnQuestionNo, btnTopic, btnSubtopic
             ,btnSend, btnSort, btnConnect
             ,btnPreorder,btnPostorder,btnInorder
-            ,btnDisplay,btnSave;
+            ,btnDisplay,btnSave,btnSeach;
 
     // Declare Labels
     JLabel lblPolicyTitle, txtSearch,txtSort
@@ -290,6 +290,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         setupTable();
         SetupJlabels();
         setVisible(true);
+        search();
         System.out.println("Initial size of al: " + al.size());
 
     }
@@ -302,14 +303,12 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         topPanel.setLayout(new BorderLayout());
         add(topPanel);
 
-
         // Create column names
         String columnNames[] =
                 { "Question #", "Topic", "Subtopic"};
 
         // Create some data
        // ArrayList<Object[]> al = new ArrayList();
-
 
         al = read.read();
         // constructor of JTable model
@@ -336,7 +335,6 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         myLayout.putConstraint(SpringLayout.WEST, topPanel, 10, SpringLayout.WEST, this);
         myLayout.putConstraint(SpringLayout.NORTH, topPanel, 150, SpringLayout.NORTH, this);
     }
-
 
     // Create Jtable Model
     class MyModel extends AbstractTableModel
@@ -428,7 +426,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         btnDisplay = UIComponentLibrary.CreateJButton("Display",100,20,675,580,this, this, myLayout);
         btnSave = UIComponentLibrary.CreateJButton("Save",100,20,675,620,this, this, myLayout);
         btnSend = UIComponentLibrary.CreateJButton("Send",100,20,750,325,this,this,myLayout);
-
+        btnSeach = UIComponentLibrary.CreateJButton("Search",100,20,50,25,this,this,myLayout);
 
     }
     // Setup Lables
@@ -546,7 +544,20 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         topicBox.setText("Test");
     }
 
-    private void search(){}
+    private void search()
+    {
+
+        for(int i = 0; i < table.getRowCount(); i++)
+        {
+            for(int j = 0; j < table.getColumnCount(); j++)
+            {
+                if(table.getModel().getValueAt(i, j).equals(searchBox.getText()))
+                {
+
+                }
+            }
+        }
+    }
 
     // End Functionality
 
@@ -627,6 +638,10 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         {
             theTree.postOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
+        }
+        if(actionEvent.getSource() == btnSeach)
+        {
+           search();
         }
 }}
 
