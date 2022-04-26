@@ -617,12 +617,37 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
             linkedList.head.append(new Node( " <-->  " + questionBox.getText()+ "--" + topicBox.getText() + "--" + subtopicBox.getText())); LinkedList.setText(linkedList.toString());
             theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText()); }
 
-        theTree.binaryString = "";
+        if(actionEvent.getSource() == btnTopic)
+        {
+            bubblesort();
+            quizModel.fireTableDataChanged();
+        }
+        if (actionEvent.getSource() == btnDisplay){
+            try
+            {
+                new SecondaryScreen();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        if(actionEvent.getSource() == btnSend)
+        {
+            // question number, topic, subtopic
+           linkedList.head.append(new Node( " <-->  " + questionBox.getText()+ "--" + topicBox.getText() + "--" + subtopicBox.getText()));
+           LinkedList.setText(linkedList.toString());
+           theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText());
 
+
+            // System.out.println("Success");
+        }
+        theTree.binaryString = "";
         if(actionEvent.getSource() == btnInorder)
         {
             theTree.inOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
+
         }
         if(actionEvent.getSource() == btnPreorder)
         {
@@ -634,10 +659,12 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
             theTree.postOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
         }
+
         if(actionEvent.getSource() == btnSeach)
         {
            search();
         }
+
 }}
 
 
