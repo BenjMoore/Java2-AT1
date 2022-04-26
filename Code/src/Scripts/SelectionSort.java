@@ -2,7 +2,7 @@ package Scripts;
 
 public class SelectionSort
 {
-    public static void selectionSort(String[] arr){
+    public static void selectionSort(int[] arr){
         for (int i = 0; i < arr.length - 1; i++)
         {
             int index = i;
@@ -17,9 +17,9 @@ public class SelectionSort
     }
 
     public static void main(String a[]){
-        String[] arr1 = {};
+        int[] arr1 = {9,14,3,2,43,11,58,22};
         System.out.println("Before Selection Sort");
-        for(String i:arr1){
+        for(int i:arr1){
             System.out.print(i+" ");
         }
         System.out.println();
