@@ -284,7 +284,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         setLayout(myLayout);
         setResizable(false);
         //new BubbleSort(al);
-
+        
         setTitle("Perfect Policys Quiz | Version: 1.0 |");
         // Setup UI
         SetupButtons();
