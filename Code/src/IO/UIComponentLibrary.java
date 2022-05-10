@@ -16,6 +16,7 @@ public class UIComponentLibrary
         frame.add(myButton); //Adds button to frame
         return myButton; //Returns completed button to caller.
     }
+
     public static JTextArea CreateAJTextArea(int rows, int columns, int posX, int posY, Frame frame, SpringLayout layout) {
         JTextArea myTextArea = new JTextArea(rows, columns);
         layout.putConstraint(SpringLayout.WEST, myTextArea, posX, SpringLayout.WEST, frame);//Sets text field's X Coordinates

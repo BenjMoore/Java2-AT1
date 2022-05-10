@@ -10,7 +10,7 @@ public class read {
 
         ArrayList<Object[]> al = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("C://temp/PerfectPoliciesQuiz_SampleData.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("PerfectPoliciesQuiz_SampleData.txt"));
             int n = 1;
             String line = ""; // create line string
             while ((line = br.readLine()) != null) // while line not empty

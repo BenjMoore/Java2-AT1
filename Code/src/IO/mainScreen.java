@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
-import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -269,10 +268,9 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     public read readclass = new read();
     ArrayList<Object[]> al = new ArrayList();
     MyModel quizModel;
-    JTable table;
+    JTable Globaltable;
     int rowIndex = 0;
     public BubbleSort bubble = new BubbleSort();
-    TableRowSorter sorter = new TableRowSorter(quizModel);
 
 
     // Initialise Main Screen
@@ -317,21 +315,22 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         quizModel = new MyModel(al, columnNames);
 
         // Create a new table instance
-        table = new JTable(quizModel);
-        table.addMouseListener(this);
+        Globaltable = new JTable(quizModel);
+        Globaltable.addMouseListener(this);
         // Configure some of JTable's paramters
-        table.isForegroundSet();
-        table.setShowHorizontalLines(false);
-        table.setRowSelectionAllowed(true);
-        table.setColumnSelectionAllowed(true);
-        add(table);
+        //table.isForegroundSet();
+        Globaltable.setShowHorizontalLines(false);
+        Globaltable.setRowSelectionAllowed(true);
+        Globaltable.setColumnSelectionAllowed(true);
+        add(Globaltable);
 
         // Change the text and background colours
-        table.setSelectionForeground(Color.white);
-        table.setSelectionBackground(Color.red);
+        //table.setSelectionForeground(Color.white);
+       // table.setSelectionBackground(Color.red);
 
         // Add the table to a scrolling pane, size and locate
-        JScrollPane scrollPane = table.createScrollPaneForTable(table);
+
+        JScrollPane scrollPane = Globaltable.createScrollPaneForTable(Globaltable);
         topPanel.add(scrollPane, BorderLayout.CENTER);
         topPanel.setPreferredSize(new Dimension(400, 150));
         myLayout.putConstraint(SpringLayout.WEST, topPanel, 10, SpringLayout.WEST, this);
@@ -541,16 +540,19 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     private void DisplayText()
     {
-        rowIndex = table.getSelectedRow();
+        rowIndex = Globaltable.getSelectedRow();
         displayQuestionNumber(rowIndex);
         topicBox.setText("Test");
     }
 
     private void search()
     {
-        table.setRowSorter( sorter );
+        /*
+        Globaltable.setRowSorter( sorter );
         String title = searchBox.getText();
         sorter.setRowFilter(RowFilter.regexFilter(title));
+
+         */
     }
 
     // End Functionality
@@ -569,7 +571,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        rowIndex = table.getSelectedRow();
+        rowIndex = Globaltable.getSelectedRow();
         displayQuestion(rowIndex);
     }
 
@@ -603,43 +605,17 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
                 txtConnectionStatus.setText("Error" + e);
             }
         }
-        if(actionEvent.getSource() == btnInorder)
-        {
-
-        }
 
         if(actionEvent.getSource() == btnTopic) { bubblesort();quizModel.fireTableDataChanged(); }
 
         if (actionEvent.getSource() == btnDisplay){ try { new SecondaryScreen(); } catch (IOException e) { e.printStackTrace(); } }
 
         if(actionEvent.getSource() == btnSend) {
-            //send();
-            linkedList.head.append(new Node( " <-->  " + questionBox.getText()+ "--" + topicBox.getText() + "--" + subtopicBox.getText())); LinkedList.setText(linkedList.toString());
-            theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText()); }
-
-        if(actionEvent.getSource() == btnTopic)
-        {
-            bubblesort();
-            quizModel.fireTableDataChanged();
-        }
-        if (actionEvent.getSource() == btnDisplay){
-            try
-            {
-                new SecondaryScreen();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        if(actionEvent.getSource() == btnSend)
-        {
             // question number, topic, subtopic
-           linkedList.head.append(new Node( " <-->  " + questionBox.getText()+ "--" + topicBox.getText() + "--" + subtopicBox.getText()));
-           LinkedList.setText(linkedList.toString());
-           theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText());
-
-
+            linkedList.head.append(new Node(" <-->  " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText()));
+            LinkedList.setText(linkedList.toString());
+            theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText());
+        }
         if(actionEvent.getSource() == btnTopic)
         {
             bubblesort();
@@ -664,32 +640,32 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
             // System.out.println("Success");
         }
-        theTree.binaryString = "";
         if(actionEvent.getSource() == btnInorder)
         {
+            theTree.binaryString = "";
             theTree.inOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
 
         }
         if(actionEvent.getSource() == btnPreorder)
         {
+            theTree.binaryString = "";
             theTree.preorderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
         }
         if(actionEvent.getSource() == btnPostorder)
         {
+            theTree.binaryString = "";
             theTree.postOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
         }
-
-
         if(actionEvent.getSource() == btnSeach)
         {
            search();
         }
 
 
-}}}
+}}
 
 
 
