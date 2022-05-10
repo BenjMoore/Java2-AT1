@@ -2,6 +2,7 @@ package IO;
 
 import Scripts.BubbleSort;
 
+import Scripts.SelectionSort;
 import Server.ChatServer;
 import Scripts.read;
 
@@ -523,6 +524,10 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     {
         bubble.bubbleSort(al);
     }
+    public void selectionsort(){
+        SelectionSort.SelectionSort(al);
+    }
+
  public void displayQuestion(int index)
  {
      txtqnNo.setText(al.get(index)[0].toString());
@@ -607,7 +612,10 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         }
 
         if(actionEvent.getSource() == btnTopic) { bubblesort();quizModel.fireTableDataChanged(); }
-
+        if(actionEvent.getSource() == btnSubtopic) {
+            selectionsort();
+            quizModel.fireTableDataChanged();
+        }
         if (actionEvent.getSource() == btnDisplay){ try { new SecondaryScreen(); } catch (IOException e) { e.printStackTrace(); } }
 
         if(actionEvent.getSource() == btnSend) {
