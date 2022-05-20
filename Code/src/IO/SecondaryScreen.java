@@ -1,12 +1,7 @@
 package IO;
 
-import Scripts.BubbleSort;
-import Server.ChatServer;
-import Scripts.read;
-
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -15,16 +10,10 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
-import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-
-import IO.mainScreen;
 
 import java.io.IOException;
 
@@ -34,8 +23,119 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
     private DataOutputStream streamOut = null;
     private String serverName = "localhost";
     private int serverPort = 4444;
+    private IO.ChatClientThread2 client = null;
+    String msgtobesent = "";
+    ArrayList<Object[]> al2 = new ArrayList();
+
 
     public static void main(String[] args)throws IOException {new SecondaryScreen();}
+    public void connect(String serverName, int serverPort) throws InterruptedException { try
+        {
+            this.socket = new Socket(serverName, serverPort);
+
+        }
+        catch (UnknownHostException uhe)
+        {
+            System.out.println("Host unknown: " + uhe.getMessage());
+            socket.wait(1000);
+
+        }
+        catch (IOException ioe)
+        {
+            System.out.println("Unexpected exception: " + ioe.getMessage());
+
+        }
+    }
+    private void send() {
+        try {
+
+            msgtobesent = "Correct";
+            streamOut.writeUTF(msgtobesent);
+            streamOut.flush();
+        } catch (IOException ioe) {
+            println("Sending error: " + ioe.getMessage());
+            close();
+        }
+    }
+
+    public void handle(String msg) {
+        if (msg.equals(".bye")) {
+            println("Good bye. Press EXIT button to exit ...");
+            close();
+        } else {
+            System.out.println("Handle: " + msg);
+            println(msg);
+        }
+    }
+
+
+    public void HandleIncoming() throws IOException {
+
+        String RecivedString = "";
+        BufferedReader br = new BufferedReader(new FileReader(RecivedString));
+        String str = br.readLine();
+        int i = 0;
+        String line = "";
+
+        while ((line = br.readLine()) != null)
+        {
+            String[] breaker = line.split(": ");
+            topicBox.setText(breaker[1]);
+            subtopicBox.setText(breaker[2]);
+            questionBox.setText(breaker[3]);
+            aBox.setText(breaker[4]);
+            bBox.setText(breaker[5]);
+            cBox.setText(breaker[6]);
+            dBox.setText(breaker[7]);
+            eBox.setText(breaker[8]);
+
+            String ArrayLength = Integer.toString(breaker.length);;
+
+           // if(  5)
+          //  {
+
+          //  }
+        }
+        br.close();
+    }
+
+    public void open() {
+        try {
+            streamOut = new DataOutputStream(socket.getOutputStream());
+            client = new ChatClientThread2(this, socket);
+        } catch (IOException ioe) {
+            println("Error opening output stream: " + ioe);
+        }
+    }
+
+    public void close() {
+        try {
+            if (streamOut != null) {
+                streamOut.close();
+            }
+            if (socket != null) {
+                socket.close();
+            }
+        } catch (IOException ioe) {
+        }
+        client.close();
+        client.stop();
+    }
+
+    void println(String msg) {
+        //display.appendText(msg + "\n");
+        lblNetworkMessage.setText(msg);
+    }
+
+
+    public void getParameters()
+    {
+//        serverName = getParameter("host");
+//        serverPort = Integer.parseInt(getParameter("port"));
+
+        serverName = "localhost";
+        serverPort = 4444;
+    }
 
     SpringLayout myLayout = new SpringLayout();
 
@@ -43,7 +143,7 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
             ,txtTopic,txtA,txtQN
             ,txtQnA,txtQnB,txtQnC
             ,txtQnD,txtQnE
-            ,txtSubtopic,txtStaffName,txtCorrectAns,lblNetworkMessage;
+            ,txtSubtopic,txtStaffName,txtCorrectAns,lblNetworkMessage,txtNetworkSentMSG;
 
     JButton btnSubmit,btnExit,btnConnect;
     // Declare Text Fields
@@ -143,13 +243,19 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnExit)
-        {
+        if (e.getSource() == btnExit) {
             System.exit(0);
         }
 
+        if (e.getSource() == btnConnect) {
+            try {
+                connect("localhost", 4444);
+                lblNetworkMessage.setText("Connected");
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+        }
     }
-
     @Override
     public void mouseClicked(MouseEvent e) {
 

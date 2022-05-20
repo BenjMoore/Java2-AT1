@@ -1,12 +1,9 @@
 package Scripts;
 
 import java.util.ArrayList;
-// import read arraylist
 
 public class BubbleSort
 {
-
-
     public static void bubbleSort(ArrayList<Object[]> arr)
     {
         for(int j=0; j<arr.size(); j++)

@@ -2,6 +2,7 @@ package IO;
 
 import Scripts.BubbleSort;
 
+import Scripts.InsertionSort;
 import Scripts.SelectionSort;
 import Server.ChatServer;
 import Scripts.read;
@@ -24,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class mainScreen extends JFrame implements ActionListener, MouseListener {
@@ -32,11 +34,14 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     private Socket socket = null;
     private DataInputStream console = null;
     private DataOutputStream streamOut = null;
-    private ChatServer.ChatClientThread1 client = null;
+    private IO.ChatClientThread1 client = null;
     private String serverName = "localhost";
     private int serverPort = 4444;
     DList linkedList = new DList();
     BinaryTree theTree = new BinaryTree();
+    private TableRowSorter sorter ;
+    String msgToBeSent = "";
+
     public static void main(String[] args) throws IOException {new mainScreen();}
 
     public void connect(String serverName, int serverPort) throws InterruptedException {
@@ -62,175 +67,57 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
         }
     }
-/*
-    private void send()
-    {
-        try
-        {
-            //streamOut.writeUTF(txtWord1.getText());
+    private void send() {
+        try {
+            msgToBeSent = topicBox.getText() + ": "
+                    + subtopicBox.getText() + ": " + questionBox.getText() + ": " + aBox.getText() + bBox.getText() + ": "
+                    + cBox.getText() + ": " + dBox.getText() + ": " + eBox.getText();
+            streamOut.writeUTF(msgToBeSent);
             streamOut.flush();
-            //txtWord1.setText("");
-        }
-        catch (IOException ioe)
-        {
+        } catch (IOException ioe) {
             println("Sending error: " + ioe.getMessage());
             close();
         }
     }
 
-    public void handle(String msg)
-    {
-        if (msg.equals(".bye"))
-        {
+    public void handle(String msg) {
+        if (msg.equals(".bye")) {
             println("Good bye. Press EXIT button to exit ...");
             close();
-        }
-        else
-        {
-            println(msg);
-
-
-
-        }
-    }
-
-    public void open()
-    {
-        try
-        {
-            streamOut = new DataOutputStream(socket.getOutputStream());
-            //client = new ChatClientThread1(this, socket);
-        }
-        catch (IOException ioe)
-        {
-            println("Error opening output stream: " + ioe);
-        }
-    }
-
-    public void close()
-    {
-        try
-        {
-            if (streamOut != null)
-            {
-                streamOut.close();
-            }
-            if (socket != null)
-            {
-                socket.close();
-            }
-        }
-        catch (IOException ioe)
-        {
-            println("Error closing ...");
-        }
-        client.close();
-        client.stop();
-    }
-
-    void println(String msg)
-    {
-        //display.appendText(msg + "\n");
-        txtLinkedList.setText(msg);
-    }
-
-    public void getParameters()
-    {
-//        serverName = getParameter("host");
-//        serverPort = Integer.parseInt(getParameter("port"));
-
-        serverName = "localhost";
-        serverPort = 4444;
-    }
-
-    public void connect(String serverName, int serverPort)
-    {
-        println("Establishing connection. Please wait ...");
-        try
-        {
-            socket = new Socket(serverName, serverPort);
-            println("Connected: " + socket);
-            open();
-        }
-        catch (UnknownHostException uhe)
-        {
-            println("Host unknown: " + uhe.getMessage());
-        }
-        catch (IOException ioe)
-        {
-            println("Unexpected exception: " + ioe.getMessage());
-        }
-    }
-
-    private void send()
-    {
-        try
-        {
-            streamOut.writeUTF(txtWord1.getText());
-            streamOut.flush();
-            txtWord1.setText("");
-        }
-        catch (IOException ioe)
-        {
-            println("Sending error: " + ioe.getMessage());
-            close();
-        }
-    }
-
-    public void handle(String msg)
-    {
-        if (msg.equals(".bye"))
-        {
-            println("Good bye. Press EXIT button to exit ...");
-            close();
-        }
-        else
-        {
+        } else {
             System.out.println("Handle: " + msg);
             println(msg);
         }
     }
 
-    public void open()
-    {
-        try
-        {
+    public void open() {
+        try {
             streamOut = new DataOutputStream(socket.getOutputStream());
-            client2 = new ChatClientThread2(this, socket);
-        }
-        catch (IOException ioe)
-        {
+            client = new ChatClientThread1(this, socket);
+        } catch (IOException ioe) {
             println("Error opening output stream: " + ioe);
         }
     }
 
-    public void close()
-    {
-        try
-        {
-            if (streamOut != null)
-            {
+    public void close() {
+        try {
+            if (streamOut != null) {
                 streamOut.close();
             }
-            if (socket != null)
-            {
+            if (socket != null) {
                 socket.close();
             }
-        }
-        catch (IOException ioe)
-        {
+        } catch (IOException ioe) {
         }
         client.close();
         client.stop();
     }
 
-    void println(String msg)
-    {
+    void println(String msg) {
         //display.appendText(msg + "\n");
-        lblMessage.setText(msg);
+        lblPolicyTitle.setText(msg);
     }
 
- */
 
     public void getParameters()
     {
@@ -336,6 +223,9 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         topPanel.setPreferredSize(new Dimension(400, 150));
         myLayout.putConstraint(SpringLayout.WEST, topPanel, 10, SpringLayout.WEST, this);
         myLayout.putConstraint(SpringLayout.NORTH, topPanel, 150, SpringLayout.NORTH, this);
+
+        sorter = new TableRowSorter<TableModel>(quizModel);
+        Globaltable.setRowSorter(sorter);
     }
 
     // Create Jtable Model
@@ -428,7 +318,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         btnDisplay = UIComponentLibrary.CreateJButton("Display",100,20,675,580,this, this, myLayout);
         btnSave = UIComponentLibrary.CreateJButton("Save",100,20,675,620,this, this, myLayout);
         btnSend = UIComponentLibrary.CreateJButton("Send",100,20,750,325,this,this,myLayout);
-        btnSeach = UIComponentLibrary.CreateJButton("Search",100,20,50,25,this,this,myLayout);
+        btnSeach = UIComponentLibrary.CreateJButton("Search",100,20,300,75,this,this,myLayout);
 
     }
     // Setup Lables
@@ -519,16 +409,26 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     }
     // Setup Functionality
 
-
     public void bubblesort()
     {
         bubble.bubbleSort(al);
     }
-    public void selectionsort(){
+    public void selectionsort() {
         SelectionSort.SelectionSort(al);
     }
+    public void insertionSort() {
+        InsertionSort.InsertionSort(al);
+    }
+    public void filterSearch() {
+        String text = searchBox.getText();
+        if (text.length() == 0) {
+            sorter.setRowFilter(null);
+        } else {
+            sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text, 0,1,2));
+        }
+    }
 
- public void displayQuestion(int index)
+    public void displayQuestion(int index)
  {
      txtqnNo.setText(al.get(index)[0].toString());
      topicBox.setText(al.get(index)[1].toString());
@@ -595,8 +495,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     @Override
     public void actionPerformed(ActionEvent actionEvent) // action listner class
     {
-        if (actionEvent.getSource() == btnExit) //  exit button
-        {
+        if (actionEvent.getSource() == btnExit) {
             System.exit(0); // exit
         }
         if(actionEvent.getSource() == btnConnect){
@@ -610,37 +509,21 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
                 txtConnectionStatus.setText("Error" + e);
             }
         }
-
         if(actionEvent.getSource() == btnTopic) { bubblesort();quizModel.fireTableDataChanged(); }
-        if(actionEvent.getSource() == btnSubtopic) {
-            selectionsort();
-            quizModel.fireTableDataChanged();
-        }
+        if(actionEvent.getSource() == btnSubtopic) { insertionSort(); quizModel.fireTableDataChanged(); }
+        if(actionEvent.getSource() == btnQuestionNo) { selectionsort();quizModel.fireTableDataChanged(); }
         if (actionEvent.getSource() == btnDisplay){ try { new SecondaryScreen(); } catch (IOException e) { e.printStackTrace(); } }
-
         if(actionEvent.getSource() == btnSend) {
             // question number, topic, subtopic
             linkedList.head.append(new Node(" <-->  " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText()));
             LinkedList.setText(linkedList.toString());
             theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText());
         }
-        if(actionEvent.getSource() == btnTopic)
-        {
+        if(actionEvent.getSource() == btnTopic) {
             bubblesort();
             quizModel.fireTableDataChanged();
         }
-        if (actionEvent.getSource() == btnDisplay){
-            try
-            {
-                new SecondaryScreen();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-        if(actionEvent.getSource() == btnSend)
-        {
+        if(actionEvent.getSource() == btnSend) {
             // question number, topic, subtopic
            linkedList.head.append(new Node( " <-->  " + questionBox.getText()+ "--" + topicBox.getText() + "--" + subtopicBox.getText()));
            LinkedList.setText(linkedList.toString());
@@ -648,30 +531,25 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
             // System.out.println("Success");
         }
-        if(actionEvent.getSource() == btnInorder)
-        {
+        if(actionEvent.getSource() == btnInorder) {
             theTree.binaryString = "";
             theTree.inOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
 
         }
-        if(actionEvent.getSource() == btnPreorder)
-        {
+        if(actionEvent.getSource() == btnPreorder) {
             theTree.binaryString = "";
             theTree.preorderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
         }
-        if(actionEvent.getSource() == btnPostorder)
-        {
+        if(actionEvent.getSource() == btnPostorder) {
             theTree.binaryString = "";
             theTree.postOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
         }
-        if(actionEvent.getSource() == btnSeach)
-        {
-           search();
+        if(actionEvent.getSource() == btnSeach) {
+           filterSearch();
         }
-
 
 }}
 

@@ -1,4 +1,4 @@
-package Quiz;
+package Quiz.out.production.Quiz;
 //Source:
 //  Creating a simple Chat Client/Server Solution 
 //  http://pirate.shu.edu/~wachsmut/Teaching/CSAS2214/Virtual/Lectures/chat-client-server.html

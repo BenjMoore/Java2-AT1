@@ -1,13 +1,3 @@
-11
-OHS
-Working at Heights
-When looking to work at heights, I need to review:
-Our Company's SOP - Working at Heights
-Our Company's Privacy Policy
-Our Chemical Safety Data Sheets
-Our Company's Copyright Policy
-Our Company's Purchasing Policy
-1
 12
 Copyright
 Client Copyright Materials
@@ -18,6 +8,16 @@ Obfuscate it so as to make it difficult to interpret
 Restrict viewing to only admin staff
 Forward to other developers via email
 2
+11
+OHS
+Working at Heights
+When looking to work at heights, I need to review:
+Our Company's SOP - Working at Heights
+Our Company's Privacy Policy
+Our Chemical Safety Data Sheets
+Our Company's Copyright Policy
+Our Company's Purchasing Policy
+1
 13
 Privacy
 Staff Details
