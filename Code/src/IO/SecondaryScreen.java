@@ -62,7 +62,22 @@ public class SecondaryScreen extends JFrame implements ActionListener, MouseList
         if (msg.equals(".bye")) {
             println("Good bye. Press EXIT button to exit ...");
             close();
-        } else {
+        } else
+        {
+           /* topicBox.getText() + ": "
+                    + subtopicBox.getText() + ": " + questionBox.getText() + ": " + aBox.getText() + bBox.getText() + ": "
+                    + cBox.getText() + ": " + dBox.getText() + ": " + eBox.getText();*/
+            String temp[] = msg.split(": ");
+
+            topicBox.setText(temp[0]);
+            subtopicBox.setText(temp[1]);
+            questionBox.setText(temp[2]);
+            aBox.setText(temp[3]);
+            bBox.setText(temp[4]);
+            cBox.setText(temp[5]);
+            dBox.setText(temp[6]);
+            eBox.setText(temp[7]);
+
             System.out.println("Handle: " + msg);
             println(msg);
         }

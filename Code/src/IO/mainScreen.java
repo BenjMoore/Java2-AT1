@@ -1,32 +1,23 @@
 package IO;
 
-import Scripts.BubbleSort;
 
+import Scripts.BubbleSort;
 import Scripts.InsertionSort;
 import Scripts.SelectionSort;
-import Server.ChatServer;
 import Scripts.read;
-
+import org.apache.commons.lang3.*;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.net.Socket;
-import java.net.UnknownHostException;
+//import java.net.Socket;
+//import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
-import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+import java.util.HashMap;
+import java.net.*;
 
 public class mainScreen extends JFrame implements ActionListener, MouseListener {
 
@@ -39,9 +30,11 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     private int serverPort = 4444;
     DList linkedList = new DList();
     BinaryTree theTree = new BinaryTree();
+    HashMap myHm = new HashMap<>();
     private TableRowSorter sorter ;
     String msgToBeSent = "";
-
+    String currentQN = "";
+    Integer wrongcount = 0;
     public static void main(String[] args) throws IOException {new mainScreen();}
 
     public void connect(String serverName, int serverPort) throws InterruptedException {
@@ -69,17 +62,22 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     }
     private void send() {
         try {
-            msgToBeSent = topicBox.getText() + ": "
+          /*  msgToBeSent = topicBox.getText() + ": "
                     + subtopicBox.getText() + ": " + questionBox.getText() + ": " + aBox.getText() + bBox.getText() + ": "
-                    + cBox.getText() + ": " + dBox.getText() + ": " + eBox.getText();
+                    + cBox.getText() + ": " + dBox.getText() + ": " + eBox.getText();*/
+            msgToBeSent = "Hello";
             streamOut.writeUTF(msgToBeSent);
             streamOut.flush();
+            if(StringUtils.isAllEmpty())
+            {
+                msgToBeSent = "No Info Sent";
+            }
+
         } catch (IOException ioe) {
             println("Sending error: " + ioe.getMessage());
             close();
         }
     }
-
     public void handle(String msg) {
         if (msg.equals(".bye")) {
             println("Good bye. Press EXIT button to exit ...");
@@ -89,6 +87,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
             println(msg);
         }
     }
+
 
     public void open() {
         try {
@@ -180,6 +179,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         setVisible(true);
         search();
         System.out.println("Initial size of al: " + al.size());
+        getParameters();
 
     }
 
@@ -460,6 +460,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
          */
     }
 
+
     // End Functionality
 
     // action listner add
@@ -498,60 +499,98 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         if (actionEvent.getSource() == btnExit) {
             System.exit(0); // exit
         }
-        if(actionEvent.getSource() == btnConnect){
-            try
-            {
-                connect("localhost",4444);
-            }
-            catch (InterruptedException e)
-            {
+        if (actionEvent.getSource() == btnConnect) {
+            try {
+                connect("localhost", 4444);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
                 txtConnectionStatus.setText("Error" + e);
             }
         }
-        if(actionEvent.getSource() == btnTopic) { bubblesort();quizModel.fireTableDataChanged(); }
-        if(actionEvent.getSource() == btnSubtopic) { insertionSort(); quizModel.fireTableDataChanged(); }
-        if(actionEvent.getSource() == btnQuestionNo) { selectionsort();quizModel.fireTableDataChanged(); }
-        if (actionEvent.getSource() == btnDisplay){ try { new SecondaryScreen(); } catch (IOException e) { e.printStackTrace(); } }
-        if(actionEvent.getSource() == btnSend) {
-            // question number, topic, subtopic
-            linkedList.head.append(new Node(" <-->  " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText()));
-            LinkedList.setText(linkedList.toString());
-            theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText());
-        }
-        if(actionEvent.getSource() == btnTopic) {
+        if (actionEvent.getSource() == btnTopic) {
             bubblesort();
             quizModel.fireTableDataChanged();
         }
-        if(actionEvent.getSource() == btnSend) {
-            // question number, topic, subtopic
-           linkedList.head.append(new Node( " <-->  " + questionBox.getText()+ "--" + topicBox.getText() + "--" + subtopicBox.getText()));
-           LinkedList.setText(linkedList.toString());
-           theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText());
-
-            // System.out.println("Success");
+        if (actionEvent.getSource() == btnSubtopic) {
+            insertionSort();
+            quizModel.fireTableDataChanged();
         }
-        if(actionEvent.getSource() == btnInorder) {
+        if (actionEvent.getSource() == btnQuestionNo) {
+            selectionsort();
+            quizModel.fireTableDataChanged();
+        }
+        if (actionEvent.getSource() == btnDisplay) {
+            try {
+                new SecondaryScreen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (actionEvent.getSource() == btnSend) {
+
+            // question number, topic, subtopic
+            if (currentQN.isEmpty()) { }
+            else
+            {
+                currentQN = currentQN + " , Incorrect Answers: " + wrongcount;
+                linkedList.head.append(new Node(" <-->  " + currentQN));
+            }
+            //linkedList.head.append(new Node(" <-->  " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText()));
+            LinkedList.setText(linkedList.toString());
+            theTree.addNode(Integer.parseInt(txtqnNo.getText()), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText());
+            myHm.put(txtqnNo.getText(), " || " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText());
+            currentQN = " <-->  " + questionBox.getText() + "--" + topicBox.getText() + "--" + subtopicBox.getText();
+            send();
+        }
+        if (actionEvent.getSource() == btnTopic) {
+            bubblesort();
+            quizModel.fireTableDataChanged();
+        }
+
+        if (actionEvent.getSource() == btnInorder) {
             theTree.binaryString = "";
             theTree.inOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
 
         }
-        if(actionEvent.getSource() == btnPreorder) {
+        if (actionEvent.getSource() == btnPreorder) {
             theTree.binaryString = "";
             theTree.preorderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
         }
-        if(actionEvent.getSource() == btnPostorder) {
+        if (actionEvent.getSource() == btnPostorder) {
             theTree.binaryString = "";
             theTree.postOrderTraverseTree(theTree.root);
             BinarySearchtxt.setText(theTree.binaryString);
         }
-        if(actionEvent.getSource() == btnSeach) {
-           filterSearch();
+        if (actionEvent.getSource() == btnSeach) {
+            filterSearch();
+        }
+        if (actionEvent.getSource() == btnSave){
+            writeFile();
         }
 
-}}
+    }
+
+
+    public void writeFile()
+    {
+
+        try
+        {
+            PrintWriter printFile = new PrintWriter(new FileWriter("Hashmap.txt"));
+            printFile.println(myHm);
+            // Empty the print buffer and close the printFile
+            printFile.close();
+        }
+        catch (Exception e)
+        {
+            System.err.println("Error Writing File: " + e.getMessage());
+        }
+    }
+
+}
+
 
 
 
