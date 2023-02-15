@@ -24,7 +24,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     //CHAT RELATED ---------------------------
     private Socket socket = null;
     private DataInputStream console = null;
-    private DataOutputStream streamOut = null;
+    private DataOutputStream streamOut;
     private IO.ChatClientThread1 client = null;
     private String serverName = "localhost";
     private int serverPort = 4444;
@@ -62,10 +62,9 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
     }
     private void send() {
         try {
-          /*  msgToBeSent = topicBox.getText() + ": "
+          msgToBeSent = topicBox.getText() + ": "
                     + subtopicBox.getText() + ": " + questionBox.getText() + ": " + aBox.getText() + bBox.getText() + ": "
-                    + cBox.getText() + ": " + dBox.getText() + ": " + eBox.getText();*/
-            msgToBeSent = "Hello";
+                    + cBox.getText() + ": " + dBox.getText() + ": " + eBox.getText();
             streamOut.writeUTF(msgToBeSent);
             streamOut.flush();
             if(StringUtils.isAllEmpty())
@@ -91,9 +90,10 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
 
     public void open() {
         try {
-            streamOut = new DataOutputStream(socket.getOutputStream());
+            OutputStream s = socket.getOutputStream();
+            streamOut = new DataOutputStream(s);
             client = new ChatClientThread1(this, socket);
-        } catch (IOException ioe) {
+        } catch (Exception ioe) {
             println("Error opening output stream: " + ioe);
         }
     }
@@ -180,6 +180,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         search();
         System.out.println("Initial size of al: " + al.size());
         getParameters();
+        //open();
 
     }
 
@@ -502,6 +503,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
         if (actionEvent.getSource() == btnConnect) {
             try {
                 connect("localhost", 4444);
+                open();
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 txtConnectionStatus.setText("Error" + e);
