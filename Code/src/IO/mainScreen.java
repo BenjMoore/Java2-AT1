@@ -197,7 +197,7 @@ public class mainScreen extends JFrame implements ActionListener, MouseListener 
                 { "Question #", "Topic", "Subtopic"};
 
         // Create some data
-       // ArrayList<Object[]> al = new ArrayList();
+        ArrayList<Object[]> al = new ArrayList();
 
         al = read.read();
         // constructor of JTable model
